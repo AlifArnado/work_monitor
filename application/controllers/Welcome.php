@@ -196,8 +196,8 @@ class Welcome extends CI_Controller {
         $num_kode_berkas_task = $bb->num_rows() + 1;
         $kode_berkas_task = "KODBER00".$num_kode_berkas_task;
 
-		$ae_name 		= $this->input->post('ae_name');
-		$project_title  = $this->input->post('project_title');
+		$ae_name 		= $this->input->post('name_ae');
+		$project_title  = $this->input->post('title_task');
 		$keterangan 	= $this->input->post('keterangan');
 		$deadline 		= $this->input->post('deadline');
 		$project_type   = $this->input->post('project_type');

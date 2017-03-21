@@ -17,6 +17,15 @@ class Staf_model extends CI_Model {
         return $query->row();
     }
 
+    public function cekLogin_staf($email) {
+        $this->db->select('*');
+        $this->db->where('email', $email);
+        $this->db->limit(1);
+        $query = $this->db->get('data_staf');
+        return $query->row();
+
+    }
+
 
 }
 

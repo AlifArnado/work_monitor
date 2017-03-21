@@ -5,7 +5,7 @@
         <?php $this->load->view('include/include_style.php'); ?>
         <style type="text/css" media="screen">
             .login_icon {
-                width: 15em;
+                width: 80%;
                 height: 5em;
             }
         </style>
@@ -17,7 +17,7 @@
         <!-- END Login Full Background -->
 
         <!-- Login Container -->
-        <div id="login-container" class="animation-fadeIn">
+        <div id="login-container" class="animation-fadeIn" style="top: 100px;">
             <!-- Login Title -->
             <div class="login-title text-center">
                 <h1> <img class="login_icon" src="<?php echo base_url('assets/images/logo.png'); ?>"> <br><small>Please <strong>Login</strong> or <strong>Register</strong></small></h1>
@@ -45,6 +45,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <span class="input-group-addon"> <i class="fa fa-unlock-alt"></i> Posisi Login ( AE / STAF )</span>
+                            <select id="example-select" name="posisi" class="form-control" size="1">
+                                <option value="0" selected>Posisi Login</option>
+                                <option value="AE">AE</option>
+                                <option value="STAF">STAF</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group form-actions">
                         <div class="col-xs-4">
                             <label class="switch switch-primary" data-toggle="tooltip" title="Remember Me?">

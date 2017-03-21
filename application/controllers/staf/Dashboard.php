@@ -27,6 +27,45 @@ class Dashboard extends CI_Controller {
         $this->load->view('staf/performance_staf_view');
     }
 
+    public function detail_project($kode_project) {
+        // load project model
+        $this->load->model('Project_model');
+        $project_model = new Project_model();
+
+        // load task model
+        $this->load->model('Task_model');
+        $task_model = new Task_model();
+
+        $data['data_project'] = $project_model->project_view_by_id($kode_project);
+        $data['data_task_order'] = $task_model->task_sort_desc($kode_project);
+        $data['data_task'] = $task_model->task_status_finish_sort_desc($kode_project);
+        $this->load->view('staf/task_list_staf_view', $data);
+    }
+
+    public function detail_task($kode_task) {
+        // load model task
+        $this->load->model('Task_model');
+        $task_model = new Task_model();
+
+        $data['data_task'] = $task_model->detail_task($kode_task);
+
+        $this->load->view('staf/detail_task_staf_view', $data);
+    }
+
+    public function brief_staf($kode_project) {
+        // load project model
+        $this->load->model('Project_model');
+        $project_model = new Project_model();
+
+        // load berkas task model
+        $this->load->model('BerkasTask_model');
+        $berkas_task_model = new BerkasTask_model();
+
+        $data['data_project'] = $project_model->project_view_by_id($kode_project);
+        $data['berkas_task'] = $berkas_task_model->task_berkas_get_id($kode_project);
+        $this->load->view('staf/brief_staf_view', $data);
+    }
+
 
 }
 

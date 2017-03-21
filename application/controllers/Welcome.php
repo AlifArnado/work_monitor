@@ -155,8 +155,14 @@ class Welcome extends CI_Controller {
         $this->load->view('pilih_handle_task_view', $this->data);
     }
 
-	public function detail_task() {
-		$this->load->view('detail_task_view');
+	public function detail_task($kode_task) {
+        // load model task
+        $this->load->model('Task_model');
+        $task_model = new Task_model();
+
+        $data['data_task'] = $task_model->detail_task($kode_task);
+
+		$this->load->view('detail_task_view', $data);
 	}
 
 	public function task_list($kode_project) {

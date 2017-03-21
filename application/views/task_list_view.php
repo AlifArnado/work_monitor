@@ -102,7 +102,7 @@
                                                             <tr>
                                                                 <td class="text-center"># <?php echo $row_task_desc->kode_task; ?></td>
                                                                 <td>
-                                                                    <a href="detail_task.php?id_task="><strong></strong></a><br>
+                                                                    <a href="<?php echo base_url('index.php/welcome/detail_task/'.$row_task_desc->kode_task); ?>"><strong> <?php echo $row_task_desc->judul_task; ?> </strong></a><br>
                                                                     <span class="text-muted"><strong><?php echo time_elapsed_string($row_task_desc->waktu);?></strong></span>
                                                                 </td>
                                                                 <td>

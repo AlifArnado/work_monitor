@@ -58,6 +58,13 @@ class Task_model extends CI_Model {
         return $query->result();
     }
 
+    public function detail_task($kode_task) {
+        $this->db->select('*');
+        $this->db->where('kode_task', $kode_task);
+        $query = $this->db->get('data_task');
+        return $query->result();
+    }
+
 
 
 }

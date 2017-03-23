@@ -13,10 +13,23 @@
       <div id="main-container">
         <!-- Page content -->
         <div id="page-content">
-          <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="fa fa-times-circle"></i> IMPORTANT</h4> Please provide your mobile phone number <a href="#modal-user-settings" data-toggle="modal">here</a>!
-          </div>
+
+          <?php
+                $email =  $this->session->userdata('email');
+                $data_register = $this->db->query("SELECT * FROM data_register where email = '$email'");
+                $value = $data_register->row_array();
+                $nomor_telepon = $value['nomor_telepon'];
+           ?>
+
+           <?php if ($nomor_telepon == "Not Set"): ?>
+             <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="fa fa-times-circle"></i> IMPORTANT</h4> Please provide your mobile phone number  <a href="<?php echo base_url('index.php/welcome/profile'); ?>" data-toggle="modal">here</a>!
+            </div>
+           <?php else: ?>
+
+           <?php endif ?>
+
           <!-- Dashboard Header -->
           <!-- Mini Top Stats Row -->
           <div class="row">

@@ -24,8 +24,7 @@
                             </div>
                         </div>
                         <ul class="breadcrumb breadcrumb-top">
-                            <li>Tables</li>
-                            <li><a href="">Datatables</a></li>
+                            <li><a href="">List Project</a></li>
                         </ul>
                         <!-- END Datatables Header -->
 

@@ -44,6 +44,7 @@
                                             FREE
                                         <?php endif ?>
 
+
                                         <?php if (!empty($row->icon)): ?>
                                             <a >
                                                 <img src="<?php echo base_url('assets/staf_image/'.$row->icon); ?>" alt="avatar" class="widget-image img-circle pull-left" style="object-fit: cover;">

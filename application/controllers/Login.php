@@ -76,19 +76,27 @@ class Login extends CI_Controller {
         $this->load->model('Register_model');
         $register_model = new Register_model();
 
+        // load model login
+        $this->load->model('Login_model');
+        $login_model = new Login_model();
+
+        $this->load->library('form_validation');
+
         $firstname        = $this->input->post('register-firstname');
-        $lastname         = $this->input->post('register-lastname');
         $email            = $this->input->post('register-email');
         $password         = $this->input->post('register-password');
         $confirm_password = $this->input->post('register-password-verify');
 
-        $nama = $firstname." ".$lastname;
+        $nama = $firstname;
         $now = date('Y-m-d H:i:s');
 
-        if ($register_model->cek_data_register($email)) {
-            //echo "ada data";;
+        if ($register_model->cek_data_register($email, $nama)) {
+            // echo "ada data";
+            $this->form_validation->set_message('Email sudah terdaftar');
+            redirect('login#register','refresh');
+            return false;
         } else {
-            //echo "g ada file";
+            // echo "g ada file";
             $data_register = array(
                 'nama' => $nama,
                 'password' => md5($password),
@@ -99,7 +107,20 @@ class Login extends CI_Controller {
                 'tanggal_daftar' => $now
             );
             $register_model->saveDataRegister($data_register);
-            redirect('login','refresh');
+            $data_register = $login_model->cekLogin($email, $password);
+                if ($login_model->cekLogin($email, $password)) {
+                    //echo "data ada";
+                    $session_data = array(
+                            'kode_register' => $data_register->kode_register,
+                            'email' => $email,
+                            'logged_in' => TRUE,
+                            'nama' => $data_register->nama,
+                            'icon_profil' => $data_register->icon_profil,
+                            'nomor_telepon' => $data_register->nomor_telepon
+                        );
+                    $this->session->set_userdata($session_data);
+                    redirect(base_url().'index.php/welcome/', 'refresh');
+                }
         }
     }
 

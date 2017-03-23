@@ -21,7 +21,7 @@
                   </div>
                </div>
                <ul class="breadcrumb breadcrumb-top">
-                  <li><a href="<?php echo base_url('index.php'); ?>">Projects</a></li>
+                  <li><a href="<?php echo base_url('index.php/staf/dashboard'); ?>">Projects</a></li>
                   <li><a href="">Project Detail</a></li>
                </ul>
                <!-- END Tickets Header -->

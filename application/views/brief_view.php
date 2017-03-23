@@ -44,7 +44,7 @@
                                                 <h5> Tanggal : <?php echo $row_berkas_task->tgl_upload_task; ?> -> Berkas Kosong</h5>
                                             <?php else: ?>
                                                 <h5> Tanggal : <?php echo $row_berkas_task->tgl_upload_task; ?> ->
-                                                <a href="./assets/uploads/<?php echo $row_berkas_task->name_file; ?>" download="<?php echo $row_berkas_task->name_file; ?>" title=""><?php echo $row_berkas_task->name_file; ?></a>
+                                                <a href="<?php echo base_url(); ?>assets/uploads/<?php echo $row_berkas_task->name_file; ?>" target="_blank" download ><?php echo $row_berkas_task->name_file; ?></a>
                                                 </h5>
                                             <?php endif ?>
                                         <?php endforeach ?>

@@ -15,7 +15,7 @@
                     <!-- Page content -->
                     <div id="page-content">
                         <ul class="breadcrumb breadcrumb-top">
-                            <li><a href="<?php echo base_url(); ?>">Projects</a></li>
+                            <li><a href="<?php echo base_url(''); ?>index.php/staf/dashboard/">Projects</a></li>
                             <li><a href="" onclick="window.history.back();">Project Detail</a></li>
                             <li><a href="">Request</a></li>
                         </ul>

@@ -69,7 +69,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12 text-center">
-                            <a href="javascript:void(0)" id="link-reminder-login"><small>Forgot password?</small></a> -
+                            <!-- <a href="javascript:void(0)" id="link-reminder-login"><small>Forgot password?</small></a> - -->
                             <a href="javascript:void(0)" id="link-register-login"><small>Create a new account</small></a>
                         </div>
                     </div>
@@ -100,16 +100,16 @@
                 <!-- END Reminder Form -->
 
                 <!-- Register Form -->
+
                 <form action="<?php echo base_url('index.php/login/register_proses'); ?>#register" method="post" id="form-register" class="form-horizontal form-bordered form-control-borderless display-none">
+                <?php echo validation_errors(); ?>
+                <?php echo form_open('form'); ?>
                     <div class="form-group">
-                        <div class="col-xs-6">
+                        <div class="col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="gi gi-user"></i></span>
-                                <input type="text" id="register-firstname" name="register-firstname" class="form-control input-lg" placeholder="Firstname">
+                                <input type="text" id="register-firstname" name="register-firstname" class="form-control input-lg" placeholder="Your Name">
                             </div>
-                        </div>
-                        <div class="col-xs-6">
-                            <input type="text" id="register-lastname" name="register-lastname" class="form-control input-lg" placeholder="Lastname">
                         </div>
                     </div>
                     <div class="form-group">

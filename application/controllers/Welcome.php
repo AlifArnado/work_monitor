@@ -99,11 +99,11 @@ class Welcome extends CI_Controller {
         $file_name = str_replace(' ','_',$_FILES['task_file']['name']);
         echo $file_name;
 
-        $config['upload_path'] = './assets/uploads_task/';
-        $config['allowed_types'] = 'gif|jpg|jpeg|png|ico|pdf';
-        $config['max_size'] = 3000;
-        $config['max_width'] = 2024;
-        $config['max_height'] = 2024;
+        $config['upload_path'] = './assets/uploads/';
+        $config['allowed_types'] = 'docx|zip|rar|pdf';
+        // $config['max_size'] = 3000;
+        // $config['max_width'] = 2024;
+        // $config['max_height'] = 2024;
         $this->load->library('upload', $config);
 
         if ( ! $this->upload->do_upload('task_file')){
@@ -202,8 +202,8 @@ class Welcome extends CI_Controller {
         $num_kode_berkas_task = $bb->num_rows() + 1;
         $kode_berkas_task = "KODBER00".$num_kode_berkas_task;
 
-		$ae_name 		= $this->input->post('name_ae');
-		$project_title  = $this->input->post('title_task');
+		$ae_name 		= $this->input->post('ae_name');
+		$project_title  = $this->input->post('project_title');
 		$keterangan 	= $this->input->post('keterangan');
 		$deadline 		= $this->input->post('deadline');
 		$project_type   = $this->input->post('project_type');
@@ -213,10 +213,10 @@ class Welcome extends CI_Controller {
         echo $file_name;
 
 		$config['upload_path'] = './assets/uploads/';
-		$config['allowed_types'] = 'gif|jpg|jpeg|png|ico|pdf';
-		$config['max_size'] = 3000;
-		$config['max_width'] = 2024;
-		$config['max_height'] = 2024;
+		$config['allowed_types'] = 'docx|zip|rar|pdf';
+		// $config['max_size'] = 3000;
+		// $config['max_width'] = 2024;
+		// $config['max_height'] = 2024;
 		$this->load->library('upload', $config);
 		if ( ! $this->upload->do_upload('images')){
 			$error = array('error' => $this->upload->display_errors());
@@ -304,13 +304,16 @@ class Welcome extends CI_Controller {
 		$kode_task = "KODTSK00".$total_data_task;
 
 		$data_project = $this->db->query("SELECT * FROM data_project WHERE kode_project = '$kode_project'");
-		$value = $data_task->row_array();
+		$value = $data_project->row_array();
 
-		$name_ae = $value['task_request'];
-		$keterangan = $value['task_desc'];
+        // echo "<pre>";
+        // print_r($value);
 
-		echo "<pre>";
-		echo json_encode($this->input->post());
+		$name_ae = $value['ae_name'];
+		$keterangan = $value['project_desc'];
+
+		// echo "<pre>";
+		// echo json_encode($this->input->post());
 
 
 		$validasi = $data_project->num_rows();
@@ -342,6 +345,8 @@ class Welcome extends CI_Controller {
                 		'tanggal_task' => $now,
                 		'work_request' => ""
                 	);
+                // echo "<pre>";
+                // print_r($data_task);
                	$task_model->saveTask($data_task);
                 $berkas_task_model->update_task_berkas($kode_berkas_task, $kode_task);
 
@@ -371,11 +376,13 @@ class Welcome extends CI_Controller {
                 		'tanggal_task' => $now,
                 		'work_request' => ""
                 	);
+                // echo "<pre>";
+                // echo print_r($data_task);
                	$task_model->saveTask($data_task);
                 $berkas_task_model->update_task_berkas($kode_berkas_task, $kode_task);
 
-                echo json_encode($data_task);
-                echo "</pre>";
+                // echo json_encode($data_task);
+                // echo "</pre>";
                 redirect(base_url().'index.php');
 			}
 		}

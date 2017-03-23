@@ -56,7 +56,7 @@
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="example-textarea-input">Brief</label>
                                             <div class="col-md-9">
-                                                <textarea required id="example-textarea-input" name="keterangan" rows="9" class="form-control"></textarea>
+                                                <textarea required id="example-textarea-input" name="keterangan" placeholder="Letakan link lainnya" rows="9" class="form-control"></textarea>
                                             </div>
                                         </div>
 

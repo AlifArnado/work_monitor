@@ -64,7 +64,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label" for="example-file-multiple-input">Attachment</label>
+                                            <label class="col-md-3 control-label" for="example-file-multiple-input">Attachment <br><span style="color: red;">file_type[.zip, .pdf, .rar]</span></label>
                                             <div class="col-md-9">
                                                 <input type="file" id="example-file-multiple-input" name="task_file">
                                             </div>

@@ -18,4 +18,8 @@
 <script src="<?php echo base_url('assets/js/pages/login.js'); ?>"></script>
 <script>$(function(){ Login.init(); });</script>
 
+<!-- Load and execute javascript code used only in this page -->
+<script src="<?php echo base_url('assets/js/pages/compCalendar.js'); ?>"></script>
+<script>$(function(){ CompCalendar.init(); });</script>
+
 

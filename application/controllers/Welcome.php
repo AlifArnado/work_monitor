@@ -37,6 +37,19 @@ class Welcome extends CI_Controller {
 		$this->load->view('timeline_view');
 	}
 
+    public function calender() {
+        $this->load->view('calender_view');
+    }
+
+    public function input_event() {
+        $this->load->view('input_event_view');
+    }
+
+    public function add_event() {
+        echo "<pre>";
+        print_r($this->input->post());
+    }
+
 	public function brief($kode_project) {
         // load project model
         $this->load->model('Project_model');
@@ -100,7 +113,7 @@ class Welcome extends CI_Controller {
         echo $file_name;
 
         $config['upload_path'] = './assets/uploads/';
-        $config['allowed_types'] = 'docx|zip|rar|pdf';
+        $config['allowed_types'] = 'zip|rar|pdf';
         // $config['max_size'] = 3000;
         // $config['max_width'] = 2024;
         // $config['max_height'] = 2024;
@@ -213,7 +226,7 @@ class Welcome extends CI_Controller {
         echo $file_name;
 
 		$config['upload_path'] = './assets/uploads/';
-		$config['allowed_types'] = 'docx|zip|rar|pdf';
+		$config['allowed_types'] = 'zip|rar|pdf';
 		// $config['max_size'] = 3000;
 		// $config['max_width'] = 2024;
 		// $config['max_height'] = 2024;

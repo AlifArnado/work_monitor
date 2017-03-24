@@ -82,7 +82,10 @@
                <a href="<?php echo base_url();?>index.php/welcome/workload"><i class="gi gi-server sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Workload</span></a>
             </li>
             <li>
-               <a href="<?php echo base_url();?>index.php/welcome/timeline"><i class="gi gi-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Timeline</span></a>
+               <a href="<?php echo base_url();?>index.php/welcome/timeline"><i class="gi gi-lightbulb sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Timeline</span></a>
+            </li>
+            <li>
+               <a href="<?php echo base_url();?>index.php/welcome/calender"><i class="gi gi-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Calender</span></a>
             </li>
 
          </ul>

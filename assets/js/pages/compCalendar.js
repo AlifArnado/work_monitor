@@ -61,87 +61,27 @@ var CompCalendar = function() {
                 header: {
                     left: 'prev,next',
                     center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
                 },
                 firstDay: 1,
-                editable: true,
-                droppable: true,
-                drop: function(date, allDay) { // this function is called when something is dropped
-
-                    // retrieve the dropped element's stored Event Object
-                    var originalEventObject = $(this).data('eventObject');
-
-                    // we need to copy it, so that multiple events don't have a reference to the same object
-                    var copiedEventObject = $.extend({}, originalEventObject);
-
-                    // assign it the date that was reported
-                    copiedEventObject.start = date;
-
-                    // render the event on the calendar
-                    // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-                    $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-
-                    // remove the element from the "Draggable Events" list
-                    $(this).remove();
-                },
+                editable: false,
+                droppable: false,
                 events: [
                     {
-                        title: 'Gaming Day',
+                        title: 'Yuasa Project',
                         start: new Date(y, m, 1),
+                        end: new Date(y, m, 11),
                         color: '#9b59b6'
                     },
                     {
-                        title: 'Live Conference',
-                        start: new Date(y, m, 3)
-                    },
-                    {
-                        title: 'Top Secret Project',
-                        start: new Date(y, m, 4),
-                        end: new Date(y, m, 8),
-                        color: '#1abc9c'
-                    },
-                    {
-                        id: 999,
-                        title: 'Gym (repeated)',
-                        start: new Date(y, m, d - 3, 15, 0),
+                        title: 'Pertamina Project',
+                        start: new Date(y, m, 6),
+                        end: new Date(y, m, 19),
                         allDay: false
                     },
                     {
-                        id: 999,
-                        title: 'Gym (repeated)',
-                        start: new Date(y, m, d + 3, 15, 0),
-                        allDay: false
-                    },
-                    {
-                        title: 'Job Meeting',
-                        start: new Date(y, m, d, 16, 00),
-                        allDay: false,
-                        color: '#f39c12'
-                    },
-                    {
-                        title: 'Awesome Project',
-                        start: new Date(y, m, d, 9, 0),
-                        end: new Date(y, m, d, 12, 0),
-                        allDay: false,
-                        color: '#d35400'
-                    },
-                    {
-                        title: 'Book Reading',
-                        start: new Date(y, m, 15),
-                        end: new Date(y, m, 16),
-                        allDay: true,
-                        color: '#3498db'
-                    },
-                    {
-                        title: 'Party',
-                        start: new Date(y, m, d + 8, 21, 0),
-                        end: new Date(y, m, d + 8, 23, 30),
-                        allDay: false
-                    },
-                    {
-                        title: 'Follow me on Twitter',
-                        start: new Date(y, m, 20),
-                        end: new Date(y, m, 24),
+                        title: 'Enfa Reward',
+                        start: new Date(y, m, 6),
+                        end: new Date(y, m, 19),
                         url: 'http://twitter.com/pixelcave',
                         color: '#e74c3c'
                     }

@@ -33,10 +33,8 @@
                                     <article>
                                         <h1>BRIEF: <?php echo $row_data_project->project_name; ?> </h1>
                                         <h3 class="sub-header text-center">by <a href="#"><strong> <?php echo $row_data_project->ae_name; ?> </strong></a> on <strong> <?php echo $row_data_project->tanggal_project; ?> </strong></h3>
-                                    <p>
-                                        <?php echo $row_data_project->project_desc; ?>
-
-                                    </p>
+                                        <p align="justify"> <?php echo $row_data_project->project_desc; ?> </p>
+                                        <p style="margin: 10px 0 20px; padding: 10px 0; border-bottom: 1px dotted #dddddd;"></p>
                                     <p>
                                         <h4>Berkas Brief</h4>
                                         <?php foreach ($berkas_task as $row_berkas_task): ?>

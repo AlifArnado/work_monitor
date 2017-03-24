@@ -9,9 +9,13 @@
 <!-- Load and execute javascript code used only in this page -->
 <script src=" <?php echo base_url('assets/js/pages/index.js'); ?> "></script>
 
+<script type="text/javascript" src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>"></script>
+
 <!-- Load and execute javascript code used only in this page -->
 <script src="<?php echo base_url('assets/js/pages/tablesDatatables.js'); ?> "></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
 
 <script src="<?php echo base_url('assets/js/pages/login.js'); ?>"></script>
 <script>$(function(){ Login.init(); });</script>
+
+

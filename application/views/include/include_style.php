@@ -19,6 +19,8 @@
 <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
 <link rel="stylesheet" href=" <?php echo base_url('assets/css/themes.css'); ?> ">
+
+<script type="text/javascript" src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>"></script>
 <!-- END Stylesheets -->
 <!-- Modernizr (browser feature detection library) -->
 <script src="<?php echo base_url('assets/js/vendor/modernizr.min.js'); ?> "></script>

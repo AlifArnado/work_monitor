@@ -29,7 +29,7 @@
                         </ul>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <div class="block">
                                     <div class="block-title">
                                         <h2><strong>Request Form</strong></h2>
@@ -57,6 +57,9 @@
                                             <label class="col-md-3 control-label" for="example-textarea-input">Request Brief</label>
                                             <div class="col-md-9">
                                                 <textarea id="example-textarea-input" required name="keterangan" rows="9" class="form-control"></textarea>
+                                                <script>
+                                                      CKEDITOR.replace('example-textarea-input');
+                                                </script>
                                             </div>
                                         </div>
 
@@ -90,7 +93,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <div class="block">
                                         <div class="block-title">
                                         <h2><strong>Project Phase</strong> Recommendation</h2>

@@ -33,7 +33,7 @@
                                     <!-- Menu Title -->
                                     <div class="block-title clearfix">
                                         <div class="block-options pull-right">
-                                            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
+                                            <!-- <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a> -->
                                         </div>
                                         <h2><i class="fa fa-briefcase"></i> Projects <strong>Info</strong></h2>
                                     </div>
@@ -71,7 +71,7 @@
                                     <!-- Tickets Title -->
                                     <div class="block-title">
                                         <div class="block-options pull-right">
-                                            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
+                                            <!-- <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a> -->
                                         </div>
                                         <ul class="nav nav-tabs" data-toggle="tabs">
                                             <li class="active"><a href="#tickets-list">Request List</a></li>

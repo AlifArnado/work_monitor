@@ -20,7 +20,8 @@
                         <div class="content-header">
                             <div class="header-section">
                                 <h1>
-                                    <i class="fa fa-calendar"></i>Calendar<br><small>An awesome calendar for your events!</small>
+                                    <i class="fa fa-calendar"></i>Calendar<br>
+                                    <!-- <small>An awesome calendar for your events!</small> -->
                                 </h1>
                             </div>
                         </div>
@@ -33,9 +34,9 @@
                         <!-- FullCalendar Content -->
                         <div class="block block-alt-noborder full">
                             <div class="row">
-                                <div class="col-md-2">
+                                <!-- <div class="col-md-2">
                                     <div class="block-section">
-                                        <a class="btn btn-block btn-primary" href="<?php echo base_url('index.php/welcome/input_event'); ?>"> <i class="fa fa-calendar"></i> Add Event </a>
+                                        <a class="btn btn-block btn-primary" href="<?php //echo base_url('index.php/welcome/input_event'); ?>"> <i class="fa fa-calendar"></i> Add Event </a>
                                     </div>
                                     <div class="block-section">
                                         <div class="block-section text-center text-muted">
@@ -45,8 +46,8 @@
                                             <li style="background-color: #1abc9c">Work</li>
                                         </ul>
                                     </div>
-                                </div>
-                                <div class="col-md-10">
+                                </div> -->
+                                <div class="col-md-12">
                                     <div id="calendar"></div>
                                 </div>
                             </div>

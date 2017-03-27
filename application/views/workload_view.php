@@ -33,7 +33,7 @@
                                         $value = $data_task->row_array();
                                         $kode_project = $value['kode_project'];
                                  ?>
-                                <div class="col-sm-6 col-lg-4">
+                                <!-- <div class="col-sm-6 col-lg-4">
                                     <div class="widget">
 
                                         <?php if ($row->status_staf === "Full"): ?>
@@ -47,11 +47,11 @@
 
                                         <?php if (!empty($row->icon)): ?>
                                             <a >
-                                                <img src="<?php echo base_url('assets/staf_image/'.$row->icon); ?>" alt="avatar" class="widget-image img-circle pull-left" style="object-fit: cover;">
+                                                <img src="<?php echo base_url('assets/staf_image/'.$row->icon); ?>" alt="avatar" class="widget-image img-circle pull-left animation-fadeIn" style="object-fit: cover;">
                                             </a>
                                         <?php else: ?>
                                             <a >
-                                                <img src="<?php echo base_url('assets/img/placeholders/avatars/avatar12.jpg'); ?>" alt="avatar" class="widget-image img-circle pull-left" style="object-fit: cover;">
+                                                <img src="<?php echo base_url('assets/img/placeholders/avatars/avatar12.jpg'); ?>" alt="avatar" class="widget-image img-circle pull-left animation-fadeIn" style="object-fit: cover;">
                                             </a>
                                         <?php endif ?>
 
@@ -73,7 +73,70 @@
                                             </h4>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
+                            <?php endforeach ?>
+
+                            <?php foreach ($data_staf as $row): ?>
+                                <?php
+                                        $data_task = $this->db->query("SELECT * FROM data_task WHERE kode_staf = '$row->id_staf' ORDER BY kode_project DESC LIMIT 1");
+                                        $value = $data_task->row_array();
+                                        $kode_project = $value['kode_project'];
+                                 ?>
+                            <div class="col-sm-6 col-lg-4">
+                                <a href="javascript:void(0)" class="widget widget-hover-effect1">
+                                    <?php if ($row->status_staf === "Full"): ?>
+                                        <div class="widget-simple themed-background-dark namastaff" data-id="<?php echo $row->id_staf; ?>" data-status="<?php echo $row->status_staf; ?>">
+                                    <?php else: ?>
+                                        <div class="widget-simple themed-background-modern namastaff"  data-id="<?php echo $row->id_staf; ?>" data-status="<?php echo $row->status_staf; ?>">
+                                    <?php endif ?>
+                                        <?php if (!empty($row->icon)): ?>
+                                            <img src="<?php echo base_url('assets/staf_image/'.$row->icon); ?>" alt="avatar" class="widget-image img-circle pull-left" style="object-fit: cover;">
+                                        <?php else: ?>
+                                            <img src="<?php echo base_url('assets/img/placeholders/avatars/avatar12.jpg'); ?>" alt="avatar" class="widget-image img-circle pull-left" style="object-fit: cover;">
+                                        <?php endif ?>
+
+                                        <h4 class="widget-content widget-content-light">
+                                            <strong><?php echo $row->nama_staf; ?></strong>
+                                            <small><?php echo $row->posisi; ?></small>
+                                        </h4>
+                                    </div>
+                                    <div class="widget-extra">
+                                        <div class="row text-center">
+                                            <div class="col-xs-4">
+                                                <?php if ($row->status_staf === "Full"): ?>
+                                                    <h3>
+                                                        <strong>Full</strong><br>
+                                                        <small>Status</small>
+                                                    </h3>
+                                                <?php else: ?>
+                                                    <h3>
+                                                        <strong>Free</strong><br>
+                                                        <small>Status</small>
+                                                    </h3>
+                                                <?php endif ?>
+
+                                            </div>
+                                            <div class="col-xs-8">
+                                            <?php if (empty($value['judul_task'])): ?>
+                                                <h3>
+                                                    <strong>No Job</strong><br>
+                                                    <small>Handle Project</small>
+                                                </h3>
+                                            <?php else: ?>
+                                                <?php
+                                                    $data_project = $this->db->query("SELECT * FROM data_project WHERE kode_project = '$kode_project'");
+                                                    $value_project = $data_project->row_array();
+                                                ?>
+                                                <h3>
+                                                    <strong><?php echo $value_project['project_name']; ?></strong><br>
+                                                    <small>Handle Project</small>
+                                                </h3>
+                                            <?php endif ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                             <?php endforeach ?>
 
                             <!-- <div class="col-sm-6 col-lg-4">
@@ -83,13 +146,40 @@
                                         <a >
                                             <img src="<?php echo base_url('assets/img/placeholders/avatars/avatar12.jpg'); ?>" alt="avatar" class="widget-image img-circle pull-left">
                                         </a>
-                                        <h4 class="widget-content">
+                                        <h4 class="widget-content widget-content-light text-right">
                                             <a><strong></strong></a>
                                             <small></small>
                                             <small></small>
                                         </h4>
                                     </div>
                                 </div>
+                            </div> -->
+                           <!--  <div class="col-sm-6 col-lg-4">
+                                <a href="javascript:void(0)" class="widget widget-hover-effect1">
+                                    <div class="widget-simple themed-background">
+                                        <img src="img/placeholders/avatars/avatar12.jpg" alt="avatar" class="widget-image img-circle pull-left">
+                                        <h4 class="widget-content widget-content-light">
+                                            <strong>Julia Warren</strong>
+                                            <small>Web Designer</small>
+                                        </h4>
+                                    </div>
+                                    <div class="widget-extra">
+                                        <div class="row text-center">
+                                            <div class="col-xs-4">
+                                                <h3>
+                                                    <strong>Full</strong><br>
+                                                    <small>Status</small>
+                                                </h3>
+                                            </div>
+                                            <div class="col-xs-8">
+                                                <h3>
+                                                    <strong>Project Name</strong><br>
+                                                    <small>Handle Project</small>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div> -->
 
 

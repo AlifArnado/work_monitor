@@ -65,27 +65,27 @@ var CompCalendar = function() {
                 firstDay: 1,
                 editable: false,
                 droppable: false,
-                events: [
-                    {
-                        title: 'Yuasa Project',
-                        start: new Date(y, m, 1),
-                        end: new Date(y, m, 11),
-                        color: '#9b59b6'
-                    },
-                    {
-                        title: 'Pertamina Project',
-                        start: new Date(y, m, 6),
-                        end: new Date(y, m, 19),
-                        allDay: false
-                    },
-                    {
-                        title: 'Enfa Reward',
-                        start: new Date(y, m, 6),
-                        end: new Date(y, m, 19),
-                        url: 'http://twitter.com/pixelcave',
-                        color: '#e74c3c'
-                    }
-                ]
+                // events: [
+                //     {
+                //         title: 'Yuasa Project',
+                //         start: new Date(y, m, 1),
+                //         end: new Date(y, m, 11),
+                //         color: '#9b59b6'
+                //     },
+                //     {
+                //         title: 'Pertamina Project',
+                //         start: new Date(y, m, 6),
+                //         end: new Date(y, m, 19),
+                //         allDay: false
+                //     },
+                //     {
+                //         title: 'Enfa Reward',
+                //         start: new Date(y, m, 6),
+                //         end: new Date(y, m, 19),
+                //         url: 'http://twitter.com/pixelcave',
+                //         color: '#e74c3c'
+                //     }
+                // ]
             });
         }
     };

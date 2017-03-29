@@ -62,15 +62,16 @@
                               <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
                            </div>
                            <ul class="nav nav-tabs" data-toggle="tabs">
-                              <li class="active"><a href="#tickets-list">Request List</a></li>
-                              <li><a href="#tickets-single">Complete List</a></li>
+                              <li class="active"><a href="#request-list"> <i class="fa fa-bullhorn"></i> Request List</a></li>
+                              <li><a href="#transfer-list"> <i class="hi hi-transfer"></i>  Transfer List</a></li>
+                              <li><a href="#complete-list"> <i class="fa fa-flag-checkered"></i> Complete List</a></li>
                            </ul>
                         </div>
                         <!-- END Tickets Title -->
                         <!-- Tabs Content -->
                         <div class="tab-content">
-                           <!-- Tickets List -->
-                           <div class="tab-pane active" id="tickets-list">
+                           <!-- Request List -->
+                           <div class="tab-pane active" id="request-list">
                               <div class="block-content-full">
                                  <div class="table-responsive remove-margin-bottom">
                                     <table class="table table-striped table-vcenter remove-margin-bottom">
@@ -119,9 +120,10 @@
                                  </div>
                               </div>
                            </div>
-                           <!-- END Tickets List -->
-                           <!-- Ticket View -->
-                           <div class="tab-pane" id="tickets-single">
+                           <!-- END Request List -->
+
+                           <!-- Transfer List -->
+                           <div class="tab-pane" id="transfer-list">
                               <div class="block-content-full">
                                  <div class="table-responsive remove-margin-bottom">
                                     <table class="table table-striped table-vcenter remove-margin-bottom">
@@ -158,7 +160,49 @@
                                  </div>
                               </div>
                            </div>
-                           <!-- END Ticket View -->
+                           <!-- END Tranfer List -->
+
+
+                           <!-- Complete View -->
+                           <div class="tab-pane" id="complete-list">
+                              <div class="block-content-full">
+                                 <div class="table-responsive remove-margin-bottom">
+                                    <table class="table table-striped table-vcenter remove-margin-bottom">
+                                       <thead>
+                                          <tr>
+                                             <th class="text-center">ID</th>
+                                             <th>Title</th>
+                                             <th>Status</th>
+                                             <th>Requester</th>
+                                             <th class="text-center">Handle By</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <?php foreach ($data_task as $row_data_task): ?>
+                                          <tr>
+                                             <td class="text-center"># <?php echo $row_data_task->kode_staf; ?></td>
+                                             <td>
+                                                <a href="detail_task.php"><strong> <?php echo $row_data_task->judul_task; ?> </strong></a><br>
+                                                <span class="text-muted"><strong> <?php echo time_elapsed_string($row_data_task->waktu);?> </strong></span>
+                                             </td>
+                                             <td><span class="label label-default">CLOSED</span></td>
+                                             <td> <?php echo $row_data_task->task_request; ?> </td>
+                                             <td class="text-center">
+                                                <?php
+                                                $data_staf = $this->db->query("SELECT * FROM data_staf WHERE id_staf = '$row_task_desc->kode_staf'");
+                                                $value_staf = $data_staf->row_array();
+                                                echo $value_staf['nama_staf'];
+                                                ?>
+                                             </td>
+                                          </tr>
+                                          <?php endforeach ?>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- END Complete View -->
+
                         </div>
                         <!-- END Tabs Content -->
                      </div>

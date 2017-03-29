@@ -55,7 +55,7 @@
                                             <td class="text-center"><?php echo $row->status_task; ?></td>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <a href="<?php echo base_url('index.php/staf/dashboard/detail_project/'.$row->kode_project); ?>" data-toggle="tooltip" title="Edit" class="btn btn-md btn-default"><i class="fa fa-code-fork"></i> Fork Job</a>
+                                                    <a href="<?php echo base_url('index.php/staf/dashboard/detail_project/'.$row->kode_project); ?>" data-toggle="tooltip" title="Edit" class="btn btn-md btn-default"><i class="hi hi-transfer"></i> Transfer Task</a>
                                                     <a href="<?php echo base_url('index.php/staf/dashboard/detail_project/'.$row->kode_project); ?>" data-toggle="tooltip" title="Delete" class="btn btn-md btn-danger"><i class="fa fa-file-text-o"></i> Detail Job</a>
                                                 </div>
                                             </td>

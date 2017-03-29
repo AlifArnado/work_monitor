@@ -66,6 +66,29 @@ class Dashboard extends CI_Controller {
         $this->load->view('staf/brief_staf_view', $data);
     }
 
+    public function get_work($kode_task, $handle) {
+
+        // load model data task
+        $this->load->model('staf/Staf_model');
+        $staf_model = new Staf_model();
+
+        $kode_task = $kode_task;
+        $handle_status = $handle;
+
+        if ($handle === "work") {
+            // echo "Kerjakan Brief";
+            // echo $kode_task;
+            $staf_model->update_task_start_watting($kode_task);
+            redirect(base_url('index.php/staf/dashboard'),'refresh');
+
+        } if ($handle == "waitting") {
+            // echo "Proses Selesai di kerjakan";
+            // echo $kode_task;
+            $staf_model->update_task_watting_to_finish($kode_task);
+            redirect(base_url('index.php/staf/dashboard'),'refresh');
+        }
+    }
+
 
 }
 

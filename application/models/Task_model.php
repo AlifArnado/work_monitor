@@ -23,6 +23,7 @@ class Task_model extends CI_Model {
         return $query->row();
     }
 
+
     public function task_update_status_proses_to_pending($kode_staf) {
         $this->db->set('status_task', "Pending"); //value that used to update column
         $this->db->where('kode_staf', $kode_staf); //which row want to upgrade
@@ -32,7 +33,18 @@ class Task_model extends CI_Model {
         return $query->row();
     }
 
+    // function untuk status task Pending menjadi proses
     public function task_update_status_prses_kode_staf($kode_staf, $kode_task) {
+        $this->db->set('status_task', 'Proses');
+        $this->db->set('kode_staf', $kode_staf);
+        $this->db->where('kode_task', $kode_task);
+        $this->db->update('data_task');
+        $query = $this->db->get('data_task');
+        return $query->row();
+    }
+
+    // proses untuk status pertama kali create di buat waiting
+    public function task_update_status_create_task_wating($kode_staf, $kode_task) {
         $this->db->set('status_task', 'Proses');
         $this->db->set('kode_staf', $kode_staf);
         $this->db->where('kode_task', $kode_task);

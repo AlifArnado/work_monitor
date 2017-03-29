@@ -339,7 +339,7 @@ class Welcome extends CI_Controller {
 				// update data status project
 				$project_model->update_status_project($kode_project, $status_project);
 
-                // pending task yang didang di kerjakan
+                // pending task yang sedang di kerjakan
 				$task_model->task_update_status_pending($kode_staf);
 
                 // tambahkan data dalam task list
@@ -353,7 +353,7 @@ class Welcome extends CI_Controller {
                 		'judul_task' => "Brief",
                 		'task_request' => $name_ae,
                 		'task_desc' => $keterangan,
-                		'status_task' => 'Proses',
+                		'status_task' => 'Start',
                 		'waktu' => $waktu_sekarang,
                 		'tanggal_task' => $now,
                 		'work_request' => ""
@@ -384,7 +384,7 @@ class Welcome extends CI_Controller {
                 		'judul_task' => "Brief",
                 		'task_request' => $name_ae,
                 		'task_desc' => $keterangan,
-                		'status_task' => 'Proses',
+                		'status_task' => 'Start',
                 		'waktu' => $waktu_sekarang,
                 		'tanggal_task' => $now,
                 		'work_request' => ""
@@ -443,7 +443,7 @@ class Welcome extends CI_Controller {
                 $staf_model->staf_update_status_full($kode_staf);
 
                 // update data task (pilih staf dan status task akctive)
-                $task_model->task_update_status_prses_kode_staf($kode_staf, $kode_task);
+                $task_model->task_update_status_create_task_waiting($kode_staf, $kode_task);
 
                 redirect(base_url().'index.php');
             }

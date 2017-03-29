@@ -5,7 +5,7 @@
       <!-- Sidebar Content -->
       <div class="sidebar-content">
          <!-- Brand -->
-         <a href="index.html" class="sidebar-brand">
+         <a href="<?php echo base_url('index.php/staf/dashboard'); ?>" class="sidebar-brand">
             <i class="gi gi-flash"></i><span class="sidebar-nav-mini-hide"><strong>CRM WOKU STAF</strong></span>
          </a>
          <!-- END Brand -->

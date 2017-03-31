@@ -35,7 +35,7 @@ class Task_model extends CI_Model {
 
     // function untuk status task Pending menjadi proses
     public function task_update_status_prses_kode_staf($kode_staf, $kode_task) {
-        $this->db->set('status_task', 'Proses');
+        $this->db->set('status_task', 'Start');
         $this->db->set('kode_staf', $kode_staf);
         $this->db->where('kode_task', $kode_task);
         $this->db->update('data_task');
@@ -44,8 +44,8 @@ class Task_model extends CI_Model {
     }
 
     // proses untuk status pertama kali create di buat waiting
-    public function task_update_status_create_task_wating($kode_staf, $kode_task) {
-        $this->db->set('status_task', 'Proses');
+    public function task_update_status_create_task_waiting($kode_staf, $kode_task) {
+        $this->db->set('status_task', 'Start');
         $this->db->set('kode_staf', $kode_staf);
         $this->db->where('kode_task', $kode_task);
         $this->db->update('data_task');
@@ -53,7 +53,16 @@ class Task_model extends CI_Model {
         return $query->row();
     }
 
-    public function task_sort_desc($kode_project) {
+    public function task_sort_desc($kode_project, $kode_staf) {
+        $this->db->select('*');
+        $this->db->where('kode_project', $kode_project);
+        $this->db->where('kode_staf', $kode_staf);
+        $this->db->order_by('kode_task', 'desc');
+        $query = $this->db->get('data_task');
+        return $query->result();
+    }
+
+    public function task_sort_desc_ae_login($kode_project) {
         $this->db->select('*');
         $this->db->where('kode_project', $kode_project);
         $this->db->order_by('kode_task', 'desc');
@@ -61,7 +70,17 @@ class Task_model extends CI_Model {
         return $query->result();
     }
 
-    public function task_status_finish_sort_desc($kode_project) {
+    public function task_status_finish_sort_desc($kode_project, $kode_staf) {
+        $this->db->select('*');
+        $this->db->where('kode_project', $kode_project);
+        $this->db->where('kode_staf', $kode_staf);
+        $this->db->where('status_task', "Finish");
+        $this->db->order_by('kode_task', 'desc');
+        $query = $this->db->get('data_task');
+        return $query->result();
+    }
+
+    public function task_status_finish_sort_desc_el_login($kode_project) {
         $this->db->select('*');
         $this->db->where('kode_project', $kode_project);
         $this->db->where('status_task', "Finish");
@@ -69,6 +88,17 @@ class Task_model extends CI_Model {
         $query = $this->db->get('data_task');
         return $query->result();
     }
+
+    public function task_status_transfer_sort_desc($kode_project, $kode_staf_transfer) {
+        $this->db->select('*');
+        $this->db->where('kode_project', $kode_project);
+        $this->db->where('kode_staf', $kode_staf_transfer);
+        $this->db->where('status_task', "Waiting Request");
+        $this->db->order_by('kode_task', 'desc');
+        $query = $this->db->get('data_task');
+        return $query->result();
+    }
+
 
     public function detail_task($kode_task) {
         $this->db->select('*');

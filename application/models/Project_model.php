@@ -47,6 +47,14 @@ class Project_model extends CI_Model {
         return $query;
     }
 
+    public function update_project_finish($kode_project, $status) {
+        $this->db->set('status_project', $status);
+        $this->db->where('kode_project', $kode_project);
+        $this->db->update('data_project');
+        $query = $this->db->get('data_project');
+        return $query;
+    }
+
 
 }
 

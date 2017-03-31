@@ -33,9 +33,9 @@ class Profile extends CI_Controller {
         $profil_model->update_profile($kode_register, $data);
         redirect(base_url().'index.php/welcome/profile/', 'refresh');
 
-        echo "<pre>";
-        print_r($this->input->post());
-        print_r($_FILES);
+        // echo "<pre>";
+        // print_r($this->input->post());
+        // print_r($_FILES);
     }
 
 }

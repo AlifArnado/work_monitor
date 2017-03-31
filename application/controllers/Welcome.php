@@ -105,9 +105,9 @@ class Welcome extends CI_Controller {
         $kode_berkas_task = "KODBER00".$num_kode_berkas_task;
 
         //echo $kode_task;
-        echo "<pre>";
-        print_r($this->input->post());
-        print_r($_FILES);
+        // echo "<pre>";
+        // print_r($this->input->post());
+        // print_r($_FILES);
 
         $file_name = str_replace(' ','_',$_FILES['task_file']['name']);
         echo $file_name;
@@ -150,8 +150,8 @@ class Welcome extends CI_Controller {
             'tgl_upload_task' => $now2
             );
 
-        print_r($data_task);
-        print_r($data_berkas_task);
+        // print_r($data_task);
+        // print_r($data_berkas_task);
 
         $task_model->saveTask($data_task);
         $berkas_task_model->task_insert_data($data_berkas_task);
@@ -188,8 +188,8 @@ class Welcome extends CI_Controller {
         $task_model = new Task_model();
 
         $data['data_project'] = $project_model->project_view_by_id($kode_project);
-        $data['data_task_order'] = $task_model->task_sort_desc($kode_project);
-        $data['data_task'] = $task_model->task_status_finish_sort_desc($kode_project);
+        $data['data_task_order'] = $task_model->task_sort_desc_ae_login($kode_project);
+        $data['data_task'] = $task_model->task_status_finish_sort_desc_el_login($kode_project);
 
 		$this->load->view('task_list_view', $data);
 	}
@@ -203,6 +203,10 @@ class Welcome extends CI_Controller {
         $this->load->model('Project_model');
 		$project_model = new Project_model();
 
+        // load model project
+        $this->load->model('Log_model');
+        $log_model = new Log_model();
+
 		$aa = $this->db->query("SELECT * FROM data_project");
 		//echo $aa->num_rows();
         //
@@ -214,6 +218,11 @@ class Welcome extends CI_Controller {
         // create primary berkas task
         $num_kode_berkas_task = $bb->num_rows() + 1;
         $kode_berkas_task = "KODBER00".$num_kode_berkas_task;
+
+        // create log id project
+        $dd = $this->db->query("SELECT * FROM data_log_project");
+        $num_log_project = $dd->num_rows() + 1;
+        $kode_log_project = "KOD-LOG-PROJ00".$num_log_project;
 
 		$ae_name 		= $this->input->post('ae_name');
 		$project_title  = $this->input->post('project_title');
@@ -258,7 +267,7 @@ class Welcome extends CI_Controller {
 			'project_load' => $project_load,
 			'tanggal_project' => $now
  		);
-        print_r($data);
+        // print_r($data);
 
         $data_berkas_task = array(
             'kode_berkas_task' => $kode_berkas_task,
@@ -267,8 +276,19 @@ class Welcome extends CI_Controller {
             'name_file' => $file_name,
             'tgl_upload_task' => $now2
             );
-        echo "<pre>";
-        print_r($data_berkas_task);
+        // echo "<pre>";
+        // print_r($data_berkas_task);
+
+        // rekam log
+        $data_log = array(
+            'kode_log_project' => $kode_log_project,
+            'kode_project' => $kode_project,
+            'nama_project' => $project_title,
+            'ae_name' => $ae_name,
+            'status_project' => 'ACTIVE',
+            'tanggal_project' => $now2
+        );
+        $log_model->insert_log_project($data_log);
 
         $berkas_task_model->task_insert_data($data_berkas_task);
  		$project_model->saveCreateProject($data);
@@ -305,6 +325,10 @@ class Welcome extends CI_Controller {
         $this->load->model('BerkasTask_model');
         $berkas_task_model = new BerkasTask_model();
 
+        // load model log
+        $this->load->model('Log_model');
+        $log_model = new Log_model();
+
 		$kode_project = $this->input->post('kode_project');
         $kode_berkas_task = $this->input->post('kode_berkas_task');
 		$kode_staf    = $this->input->post('kode_staf');
@@ -318,6 +342,11 @@ class Welcome extends CI_Controller {
 
 		$data_project = $this->db->query("SELECT * FROM data_project WHERE kode_project = '$kode_project'");
 		$value = $data_project->row_array();
+
+        // create log id project
+        $dd = $this->db->query("SELECT * FROM data_log_task");
+        $num_log_task = $dd->num_rows() + 1;
+        $kode_log_task = "KOD-LOG-TAKS00".$num_log_task;
 
         // echo "<pre>";
         // print_r($value);
@@ -360,10 +389,25 @@ class Welcome extends CI_Controller {
                 	);
                 // echo "<pre>";
                 // print_r($data_task);
+
+                $data_log = array(
+                        'kode_log_task' => $kode_log_task,
+                        'kode_task' => $kode_task,
+                        'kode_project' => $kode_project,
+                        'kode_staf' => $kode_staf,
+                        'kode_staf_transfer' => "",
+                        'nama_project' => "Brief",
+                        'start_time' => "",
+                        'end_time' => "",
+                        'status_log_task' => "WAITING",
+                        'tanggal_log' => $waktu_sekarang
+                    );
+
+                $log_model->insert_log_task($data_log);
                	$task_model->saveTask($data_task);
                 $berkas_task_model->update_task_berkas($kode_berkas_task, $kode_task);
 
-                echo json_encode($data_task);
+                //echo json_encode($data_task);
                 redirect(base_url().'index.php');
 			} else {
 				$status_staf = "Full";
@@ -389,6 +433,22 @@ class Welcome extends CI_Controller {
                 		'tanggal_task' => $now,
                 		'work_request' => ""
                 	);
+
+                $data_log = array(
+                        'kode_log_task' => $kode_log_task,
+                        'kode_task' => $kode_task,
+                        'kode_project' => $kode_project,
+                        'kode_staf' => $kode_staf,
+                        'kode_staf_transfer' => "",
+                        'nama_project' => "Brief",
+                        'start_time' => "",
+                        'end_time' => "",
+                        'status_log_task' => "WAITTING",
+                        'tanggal_log' => $waktu_sekarang
+                    );
+
+                $log_model->insert_log_task($data_log);
+
                 // echo "<pre>";
                 // echo print_r($data_task);
                	$task_model->saveTask($data_task);
@@ -415,6 +475,17 @@ class Welcome extends CI_Controller {
         $this->load->model('Staf_model');
         $staf_model = new Staf_model();
 
+        // load model log
+        $this->load->model('Log_model');
+        $log_model = new Log_model();
+
+        $waktu_sekarang = date('Y-m-d H:i:s');
+
+        // create log id project
+        $dd = $this->db->query("SELECT * FROM data_log_task");
+        $num_log_task = $dd->num_rows() + 1;
+        $kode_log_task = "KOD-LOG-TAKS00".$num_log_task;
+
         $kode_project = $this->input->post('kode_project');
         $kode_task = $this->input->post('kode_task');
         $kode_staf = $this->input->post('kode_staf');
@@ -435,6 +506,21 @@ class Welcome extends CI_Controller {
                 // update data task (pilih staf dan status task akctive)
                 $task_model->task_update_status_prses_kode_staf($kode_staf, $kode_task);
 
+                $data_log = array(
+                        'kode_log_task' => $kode_log_task,
+                        'kode_task' => $kode_task,
+                        'kode_project' => $kode_project,
+                        'kode_staf' => $kode_staf,
+                        'kode_staf_transfer' => "",
+                        'nama_project' => "Brief",
+                        'start_time' => "",
+                        'end_time' => "",
+                        'status_log_task' => "WAITTING",
+                        'tanggal_log' => $waktu_sekarang
+                    );
+
+                $log_model->insert_log_task($data_log);
+
                 redirect(base_url().'index.php');
             } else {
                 $status_staf = "Full";
@@ -444,6 +530,21 @@ class Welcome extends CI_Controller {
 
                 // update data task (pilih staf dan status task akctive)
                 $task_model->task_update_status_create_task_waiting($kode_staf, $kode_task);
+
+                $data_log = array(
+                        'kode_log_task' => $kode_log_task,
+                        'kode_task' => $kode_task,
+                        'kode_project' => $kode_project,
+                        'kode_staf' => $kode_staf,
+                        'kode_staf_transfer' => "",
+                        'nama_project' => "Brief",
+                        'start_time' => "",
+                        'end_time' => "",
+                        'status_log_task' => "WAITTING",
+                        'tanggal_log' => $waktu_sekarang
+                    );
+
+                $log_model->insert_log_task($data_log);
 
                 redirect(base_url().'index.php');
             }

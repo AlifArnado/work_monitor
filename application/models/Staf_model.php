@@ -23,8 +23,9 @@ class Staf_model extends CI_Model {
         $this->db->limit(1);
         $query = $this->db->get('data_staf');
         return $query->row();
-
     }
+
+
 
 
 }

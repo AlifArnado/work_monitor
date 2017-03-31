@@ -85,6 +85,7 @@
                                 </div>
                             <?php endforeach ?>
                             </form>
+                        </div>
                     <!-- END Page Content -->
                 </div>
                 <!-- END Main Container -->

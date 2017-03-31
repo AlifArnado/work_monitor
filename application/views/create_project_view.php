@@ -41,9 +41,9 @@
 
                                     <form action="<?php echo base_url('index.php/welcome/submit_create_project'); ?>" method="POST" enctype="multipart/form-data" class="form-horizontal form-bordered" >
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label">Order by:</label>
+                                            <!-- <label class="col-md-3 control-label">Order by:</label> -->
                                             <div class="col-md-9">
-                                                <input type="text" name="ae_name" value="<?php echo $this->session->userdata('nama'); ?>" placeholder="<?php echo $this->session->userdata('nama'); ?>">
+                                                <input type="hidden" name="ae_name" value="<?php echo $this->session->userdata('nama'); ?>" placeholder="<?php echo $this->session->userdata('nama'); ?>">
                                             </div>
                                         </div>
                                         <div class="form-group">

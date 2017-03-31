@@ -49,11 +49,12 @@ class Login extends CI_Controller {
         } else if ($posisi == "STAF") {
             $data_staf = $staf_model->cekLogin_staf($email);
             if ($staf_model->cekLogin_staf($email)) {
-                echo "data ada";
+                // echo "data ada";
                 $session_data = array(
                        'logged_in' => TRUE,
                         'kode_staf' => $data_staf->id_staf,
                         'nama_staf' => $data_staf->nama_staf,
+                        'posisi' => $data_staf->posisi,
                         'status' => $data_staf->status_staf,
                         'icon' => $data_staf->icon
                     );
@@ -125,7 +126,7 @@ class Login extends CI_Controller {
     }
 
     public function forgot_password() {
-        print_r($this->input->post());
+        //print_r($this->input->post());
     }
 
     public function logout() {

@@ -91,7 +91,7 @@
                                           <tr>
                                              <td class="text-center"># <?php echo $row_task_desc->kode_task; ?></td>
                                              <td>
-                                                <a href="<?php echo base_url('index.php/staf/dashboard/detail_task/'.$row_task_desc->kode_task); ?>"><strong><?php echo $row_task_desc->judul_task; ?></strong> </a><br>
+                                                <a href="<?php echo base_url('index.php/staf/dashboard/detail_task/'.$row_task_desc->kode_task.'/'.$kode_project); ?>"><strong><?php echo $row_task_desc->judul_task; ?></strong> </a><br>
                                                 <span class="text-muted"><strong><?php echo time_elapsed_string($row_task_desc->waktu);?></strong></span>
                                              </td>
                                              <td>
@@ -137,14 +137,14 @@
                                           </tr>
                                        </thead>
                                        <tbody>
-                                          <?php foreach ($data_task as $row_data_task): ?>
+                                          <?php foreach ($data_task_transfer as $row_data_task): ?>
                                           <tr>
                                              <td class="text-center"># <?php echo $row_data_task->kode_staf; ?></td>
                                              <td>
                                                 <a href="detail_task.php"><strong> <?php echo $row_data_task->judul_task; ?> </strong></a><br>
                                                 <span class="text-muted"><strong> <?php echo time_elapsed_string($row_data_task->waktu);?> </strong></span>
                                              </td>
-                                             <td><span class="label label-default">CLOSED</span></td>
+                                             <td><span class="label label-info">TRANSFER</span></td>
                                              <td> <?php echo $row_data_task->task_request; ?> </td>
                                              <td class="text-center">
                                                 <?php

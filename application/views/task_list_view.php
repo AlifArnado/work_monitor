@@ -5,7 +5,7 @@
         <?php $this->load->view('include/include_style.php'); ?>
         <?php $this->load->view('include/include_costom.php'); ?>
     </head>
-    <body>
+    <body >
         <div id="page-wrapper">
             <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
                 <?php $this->load->view('include/side_bar.php'); ?>
@@ -108,7 +108,7 @@
                                                                 <td>
                                                                     <?php
                                                                         if ($status == 'Start'){
-                                                                            echo '<span class="label label-success">WAITING</span>';
+                                                                            echo '<span class="label label-success">WAITTING</span>';
                                                                         } else if ($status == 'Proses'){
                                                                             echo '<span class="label label-warning">PROCESS</span>';
                                                                         } else {
@@ -135,7 +135,7 @@
                                         <!-- END Tickets List -->
                                         <!-- Ticket View -->
                                         <div class="tab-pane" id="tickets-single">
-                                            <div class="block-content-full">
+                                            <div class="block-content-full" style="max-height: 374px; overflow-y: scroll;">
                                                 <div class="table-responsive remove-margin-bottom">
                                                     <table class="table table-striped table-vcenter remove-margin-bottom">
                                                         <thead>
@@ -152,7 +152,7 @@
                                                             <tr>
                                                                 <td class="text-center"># <?php echo $row_data_task->kode_staf; ?></td>
                                                                 <td>
-                                                                    <a href="detail_task.php"><strong> <?php echo $row_data_task->judul_task; ?> </strong></a><br>
+                                                                    <a href="<?php echo base_url('index.php/welcome/detail_task/'.$row_task_desc->kode_task); ?>"><strong> <?php echo $row_data_task->judul_task; ?> </strong></a><br>
                                                                     <span class="text-muted"><strong> <?php echo time_elapsed_string($row_data_task->waktu);?> </strong></span>
                                                                 </td>
                                                                 <td><span class="label label-default">CLOSED</span></td>
@@ -191,5 +191,6 @@
 
 
         <?php $this->load->view('include/include_script.php'); ?>
+
     </body>
 </html>

@@ -21,7 +21,7 @@
                     <div id="page-content">
                         <div class="content-header">
                             <div class="header-section">
-                            <form action="<?php echo base_url('index.php/staf/dashboard/transfer_processing'); ?>" method="POST">
+                            <form action="<?php echo base_url('staf/dashboard/transfer_processing'); ?>" method="POST">
 
                             <input type="hidden" name="kode_project" value="<?php echo $kode_project; ?>">
                             <input type="hidden" name="kode_task" value="<?php echo $kode_task; ?>">
@@ -73,6 +73,8 @@
                                                 <small>
                                                     <?php
                                                         if (empty($value['judul_task'])) {
+                                                            echo "<br> No Job";
+                                                        } else if ($value['status_task'] == 'Finish') {
                                                             echo "<br> No Job";
                                                         } else {
                                                             $data_project = $this->db->query("SELECT * FROM data_project WHERE kode_project = '$kode_project'");

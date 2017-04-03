@@ -26,7 +26,7 @@
                         <ul class="breadcrumb breadcrumb-top">
                             <li><a href="<?php echo base_url(); ?>">Projects</a>
                             </li>
-                            <li><a href=" <?php echo base_url(); ?>index.php/welcome/create_project">Create Projects</a>
+                            <li><a href=" <?php echo base_url(); ?>welcome/create_project">Create Projects</a>
                             </li>
 
                         </ul>

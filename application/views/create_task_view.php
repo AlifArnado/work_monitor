@@ -24,8 +24,8 @@
                         </div>
                         <ul class="breadcrumb breadcrumb-top">
                             <li><a href="<?php echo base_url(); ?>">Projects</a></li>
-                            <li><a href="<?php echo base_url('index.php/welcome/task_list/'.$kode_project);?>">Project Detail</a></li>
-                            <li><a href=" <?php echo base_url('index.php/welcome/create_task'); ?> ">Create Request</a></li>
+                            <li><a href="<?php echo base_url('welcome/task_list/'.$kode_project);?>">Project Detail</a></li>
+                            <li><a href=" <?php echo base_url('welcome/create_task'); ?> ">Create Request</a></li>
                         </ul>
 
                         <div class="row">
@@ -34,7 +34,7 @@
                                     <div class="block-title">
                                         <h2><strong>Request Form</strong></h2>
                                     </div>
-                                    <form action="<?php echo base_url('index.php/welcome/save_new_task'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                                    <form action="<?php echo base_url('welcome/save_new_task'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">Request by &nbsp;:</label>
                                             <div class="col-md-9">

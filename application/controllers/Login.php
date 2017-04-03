@@ -41,9 +41,9 @@ class Login extends CI_Controller {
                             'nomor_telepon' => $data_register->nomor_telepon
                         );
                     $this->session->set_userdata($session_data);
-                    redirect(base_url().'index.php/welcome/', 'refresh');
+                    redirect(base_url().'welcome/', 'refresh');
                 } else {
-                    redirect(base_url().'index.php/login/', 'refresh');
+                    redirect(base_url().'login/', 'refresh');
                 }
 
         } else if ($posisi == "STAF") {
@@ -60,13 +60,13 @@ class Login extends CI_Controller {
                     );
                 //print_r($session_data);
                 $this->session->set_userdata($session_data);
-                redirect(base_url().'index.php/staf/dashboard','refresh');
+                redirect(base_url().'staf/dashboard','refresh');
             } else {
                 //echo "data tidak ada";
-                redirect(base_url().'index.php/login/', 'refresh');
+                redirect(base_url().'login/', 'refresh');
             }
         } else {
-            redirect(base_url().'index.php/login/', 'refresh');
+            redirect(base_url().'login/', 'refresh');
        }
 
 
@@ -120,7 +120,7 @@ class Login extends CI_Controller {
                             'nomor_telepon' => $data_register->nomor_telepon
                         );
                     $this->session->set_userdata($session_data);
-                    redirect(base_url().'index.php/welcome/', 'refresh');
+                    redirect(base_url().'welcome/', 'refresh');
                 }
         }
     }
@@ -132,7 +132,7 @@ class Login extends CI_Controller {
     public function logout() {
         $this->session->unset_userdata('logged_in');
         $this->session->sess_destroy();
-        redirect(base_url().'index.php/login/', 'refresh');
+        redirect(base_url().'login/', 'refresh');
     }
 
 }

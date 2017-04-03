@@ -155,7 +155,7 @@ class Welcome extends CI_Controller {
 
         $task_model->saveTask($data_task);
         $berkas_task_model->task_insert_data($data_berkas_task);
-        redirect(base_url().'index.php/welcome/pilih_handle_task/'.$kode_project.'/'.$kode_task);
+        redirect(base_url().'welcome/pilih_handle_task/'.$kode_project.'/'.$kode_task);
     }
 
     public function pilih_handle_task($kode_project, $kode_task) {
@@ -292,7 +292,7 @@ class Welcome extends CI_Controller {
 
         $berkas_task_model->task_insert_data($data_berkas_task);
  		$project_model->saveCreateProject($data);
- 		redirect(base_url().'index.php/welcome/pilih_handle/'.$kode_project.'/'.$kode_berkas_task);
+ 		redirect(base_url().'welcome/pilih_handle/'.$kode_project.'/'.$kode_berkas_task);
 	}
 
 	public function pilih_staf() {
@@ -329,6 +329,10 @@ class Welcome extends CI_Controller {
         $this->load->model('Log_model');
         $log_model = new Log_model();
 
+        // load model Sendemial_model
+        $this->load->model('Email_model');
+        $sendmail_model = new Email_model();
+
 		$kode_project = $this->input->post('kode_project');
         $kode_berkas_task = $this->input->post('kode_berkas_task');
 		$kode_staf    = $this->input->post('kode_staf');
@@ -348,11 +352,21 @@ class Welcome extends CI_Controller {
         $num_log_task = $dd->num_rows() + 1;
         $kode_log_task = "KOD-LOG-TAKS00".$num_log_task;
 
+        $data_staf = $this->db->query("SELECT * FROM data_staf WHERE id_staf = '$kode_staf'");
+        $value_staf = $data_staf->row_array();
+
+        $email_ae = $this->session->userdata('email');
+        $email_staf = $value_staf['email'];
+
+        $nomor_telepon_ae = $this->session->userdata('nomor_telepon');
+        $nomor_telepon_staf = $value_staf['nomor_telepon'];
+
         // echo "<pre>";
         // print_r($value);
 
 		$name_ae = $value['ae_name'];
 		$keterangan = $value['project_desc'];
+        $nama_project = $value['project_name'];
 
 		// echo "<pre>";
 		// echo json_encode($this->input->post());
@@ -403,6 +417,13 @@ class Welcome extends CI_Controller {
                         'tanggal_log' => $waktu_sekarang
                     );
 
+                // beri notifikasi ae
+                $subject = "Project anda ".$nama_project." di pending";
+                $text = "Project anda ".$nama_project." di pending Oleh".$name_ae;
+
+                $sendmail_model->send_mail_create_pending_project($email_ae, $subject, $text);
+                $sendmail_model->send_sms_ae($nomor_telepon_ae, $text);
+
                 $log_model->insert_log_task($data_log);
                	$task_model->saveTask($data_task);
                 $berkas_task_model->update_task_berkas($kode_berkas_task, $kode_task);
@@ -417,6 +438,13 @@ class Welcome extends CI_Controller {
 
                 // update data project menjadi Active
                 $project_model->update_status_project($kode_project, $status_project);
+
+                // beri notifikasi staf
+                $subject = "Project ".$nama_project." diberikan kepada anda";
+                $text = "Mohon check woku untuk melihat detail job";
+
+                $sendmail_model->send_mail_create_project($email_staf, $subject, $text);
+                $sendmail_model->send_sms_staf($nomor_telepon_staf, $subject);
 
                 // tambhakan data dalam task
                 $now = date('Y-m-d');
@@ -567,5 +595,15 @@ class Welcome extends CI_Controller {
         $log_model->update_log_project($kode_project);
         $project_model->update_project_finish($kode_project, "FINISH");
         redirect(base_url().'index.php' ,'refresh');
+    }
+
+    public function detail_performance_staf($kode_staf) {
+         // load model performance
+       $this->load->model('staf/Performance_model');
+       $performance_model = new Performance_model();
+
+        $data['performance_staf'] = $performance_model->detail_performance_task($kode_staf);
+
+        $this->load->view('performance_view', $data);
     }
 }

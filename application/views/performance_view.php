@@ -8,7 +8,7 @@
         <div id="page-wrapper">
             <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
 
-                <?php $this->load->view('./include/side_bar_staf.php'); ?>
+                <?php $this->load->view('./include/side_bar.php'); ?>
 
                 <!-- Main Container -->
                 <div id="main-container">

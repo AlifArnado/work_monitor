@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <ul class="breadcrumb breadcrumb-top">
-                            <li><a href="<?php echo base_url('index.php'); ?>">Projects</a></li>
+                            <li><a href="<?php echo base_url(''); ?>">Projects</a></li>
                             <li><a href="">Project Detail</a></li>
                         </ul>
                         <!-- END Tickets Header -->
@@ -47,8 +47,8 @@
                                     <p><i class="fa fa-clock-o"></i>&nbsp;<strong>Deadline</strong> : <?php echo $row->deadline_project; ?></p>
                                     <p><i class="fa fa-bolt"></i>&nbsp;<strong>Rational Finish Time</strong> : <?php echo $row->deadline_project; ?> </p>
                                     <br/>
-                                    <a href="<?php echo base_url('index.php/welcome/brief/'.$row->kode_project); ?>"><button type="button" class="btn btn-primary">Open Brief</button></a>
-                                    <a id="finish_project" href="<?php echo base_url('index.php/welcome/close_project/'.$row->kode_project); ?>"><button type="button" class="btn btn-success">Finish Project</button></a>
+                                    <a href="<?php echo base_url('welcome/brief/'.$row->kode_project); ?>"><button type="button" class="btn btn-primary">Open Brief</button></a>
+                                    <a id="finish_project" href="<?php echo base_url('welcome/close_project/'.$row->kode_project); ?>"><button type="button" class="btn btn-success">Finish Project</button></a>
                                     <!-- END Menu Content -->
 
                                     <?php endforeach ?>
@@ -59,7 +59,7 @@
                             </div>
 
                             <div class="col-sm-8 col-lg-9">
-                                <form id="add-task-form" class="push" method="POST" action="<?php echo base_url('/index.php/welcome/create_task'); ?>">
+                                <form id="add-task-form" class="push" method="POST" action="<?php echo base_url('/welcome/create_task'); ?>">
                                     <div class="input-group input-group-lg">
                                         <input type="text" id="add-task" name="title-task" class="form-control" required placeholder="Add New Request..">
                                         <input type="hidden" name="project_id" value="<?php echo $kode_project; ?> ">
@@ -103,7 +103,7 @@
                                                             <tr>
                                                                 <td class="text-center"># <?php echo $row_task_desc->kode_task; ?></td>
                                                                 <td>
-                                                                    <a href="<?php echo base_url('index.php/welcome/detail_task/'.$row_task_desc->kode_task); ?>"><strong> <?php echo $row_task_desc->judul_task; ?> </strong></a><br>
+                                                                    <a href="<?php echo base_url('welcome/detail_task/'.$row_task_desc->kode_task); ?>"><strong> <?php echo $row_task_desc->judul_task; ?> </strong></a><br>
                                                                     <span class="text-muted"><strong><?php echo time_elapsed_string($row_task_desc->waktu);?></strong></span>
                                                                 </td>
                                                                 <td>
@@ -153,7 +153,7 @@
                                                             <tr>
                                                                 <td class="text-center"># <?php echo $row_data_task->kode_staf; ?></td>
                                                                 <td>
-                                                                    <a href="<?php echo base_url('index.php/welcome/detail_task/'.$row_task_desc->kode_task); ?>"><strong> <?php echo $row_data_task->judul_task; ?> </strong></a><br>
+                                                                    <a href="<?php echo base_url('welcome/detail_task/'.$row_task_desc->kode_task); ?>"><strong> <?php echo $row_data_task->judul_task; ?> </strong></a><br>
                                                                     <span class="text-muted"><strong> <?php echo time_elapsed_string($row_data_task->waktu);?> </strong></span>
                                                                 </td>
                                                                 <td><span class="label label-default">CLOSED</span></td>

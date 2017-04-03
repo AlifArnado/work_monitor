@@ -34,6 +34,12 @@
                                     </div>
                                     <!-- END Form Elements Title -->
 
+                                    <?php
+                                        $kode_register = $this->session->userdata('kode_register');
+                                        $data_register = $this->db->query("SELECT * FROM data_register WHERE kode_register = '$kode_register'");
+                                        $value_register = $data_register->row_array();
+                                      ?>
+
                                     <!-- Basic Form Elements Content -->
                                     <form action="<?php echo base_url('index.php/profile/update_profile'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                                         <div class="form-group">
@@ -52,7 +58,7 @@
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="example-text-input">Nomor Telepon</label>
                                             <div class="col-md-9">
-                                                <input type="text" id="example-text-input" name="nomor_telepon" value="<?php echo $this->session->userdata('nomor_telepon'); ?>" class="form-control" placeholder="<?php echo $this->session->userdata('nomor_telepon'); ?>">
+                                                <input type="text" id="example-text-input" name="nomor_telepon" value="<?php echo $value_register['nomor_telepon']; ?>" class="form-control" placeholder="<?php echo $value_register['nomor_telepon']; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group">

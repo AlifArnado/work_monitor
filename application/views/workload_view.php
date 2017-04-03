@@ -27,54 +27,6 @@
                         </ul>
 
                        <div class="row">
-                            <?php foreach ($data_staf as $row): ?>
-                                <?php
-                                        $data_task = $this->db->query("SELECT * FROM data_task WHERE kode_staf = '$row->id_staf' ORDER BY kode_project DESC LIMIT 1");
-                                        $value = $data_task->row_array();
-                                        $kode_project = $value['kode_project'];
-                                 ?>
-                                <!-- <div class="col-sm-6 col-lg-4">
-                                    <div class="widget">
-
-                                        <?php if ($row->status_staf === "Full"): ?>
-                                             <div class="widget-simple themed-background-dark namastaff" data-id="<?php echo $row->id_staf; ?>" data-status="<?php echo $row->status_staf; ?>">
-                                             <font color="white">FULL</font>
-                                        <?php else: ?>
-                                            <div class="widget-simple namastaff"  data-id="<?php echo $row->id_staf; ?>" data-status="<?php echo $row->status_staf; ?>">
-                                            FREE
-                                        <?php endif ?>
-
-
-                                        <?php if (!empty($row->icon)): ?>
-                                            <a >
-                                                <img src="<?php echo base_url('assets/staf_image/'.$row->icon); ?>" alt="avatar" class="widget-image img-circle pull-left animation-fadeIn" style="object-fit: cover;">
-                                            </a>
-                                        <?php else: ?>
-                                            <a >
-                                                <img src="<?php echo base_url('assets/img/placeholders/avatars/avatar12.jpg'); ?>" alt="avatar" class="widget-image img-circle pull-left animation-fadeIn" style="object-fit: cover;">
-                                            </a>
-                                        <?php endif ?>
-
-
-                                            <h4 class="widget-content">
-                                                <a><strong> <?php echo $row->nama_staf; ?> </strong></a>
-                                                <small> <?php echo $row->posisi; ?> </small>
-                                                <small>
-                                                    <?php
-                                                        if (empty($value['judul_task'])) {
-                                                            echo "<br> No Job";
-                                                        } else {
-                                                            $data_project = $this->db->query("SELECT * FROM data_project WHERE kode_project = '$kode_project'");
-                                                            $value_project = $data_project->row_array();
-                                                            echo "<br> Handle : ".$value_project['project_name'];
-                                                        }
-                                                     ?>
-                                                </small>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            <?php endforeach ?>
 
                             <?php foreach ($data_staf as $row): ?>
                                 <?php
@@ -83,7 +35,7 @@
                                         $kode_project = $value['kode_project'];
                                  ?>
                             <div class="col-sm-6 col-lg-4">
-                                <a href="javascript:void(0)" class="widget widget-hover-effect1">
+                                <a href="<?php echo base_url('welcome/detail_performance_staf/'.$row->id_staf); ?>" class="widget widget-hover-effect1">
                                     <?php if ($row->status_staf === "Full"): ?>
                                         <div class="widget-simple themed-background-dark namastaff" data-id="<?php echo $row->id_staf; ?>" data-status="<?php echo $row->status_staf; ?>">
                                     <?php else: ?>

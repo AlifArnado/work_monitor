@@ -27,3 +27,6 @@
 <!-- END Stylesheets -->
 <!-- Modernizr (browser feature detection library) -->
 <script src="<?php echo base_url('assets/js/vendor/modernizr.min.js'); ?> "></script>
+<?php
+date_default_timezone_set("Asia/Jakarta");
+ ?>

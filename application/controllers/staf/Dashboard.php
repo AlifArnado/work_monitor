@@ -83,6 +83,7 @@ class Dashboard extends CI_Controller {
 
         $data['data_task'] = $task_model->detail_task($kode_task);
         $data['kode_project'] = $kode_project;
+        $data['kode_task'] = $kode_task;
 
         $this->load->view('staf/detail_task_staf_view', $data);
     }
@@ -123,7 +124,7 @@ class Dashboard extends CI_Controller {
             $now2 = date('Y-m-d H:i:s');
             $log_model->update_start_task($kode_task, $now2);
 
-            redirect(base_url('index.php/staf/dashboard'),'refresh');
+            redirect(base_url('staf/dashboard'),'refresh');
 
         } if ($handle == "waitting") {
             // echo "Proses Selesai di kerjakan";
@@ -136,10 +137,10 @@ class Dashboard extends CI_Controller {
             $valid = $query->num_rows();
 
             if ($valid > 0) {
-                redirect(base_url('index.php/staf/dashboard'),'refresh');
+                redirect(base_url('staf/dashboard'),'refresh');
             } else {
                 $staf_model->staf_update_status_free($kode_staf);
-                redirect(base_url('index.php/staf/dashboard'),'refresh');
+                redirect(base_url('staf/dashboard'),'refresh');
             }
         }
     }
@@ -185,7 +186,7 @@ class Dashboard extends CI_Controller {
 
         $tb_data_task = $this->db->query("SELECT * FROM data_task WHERE kode_project = '$kode_project' AND kode_task = '$kode_task' AND kode_staf = '$kode_staf_transfer_task'");
         $data_task = $tb_data_task->row();
-        print_r($data_task->kode_task);
+        //print_r($data_task->kode_task);
 
         $staf_model->update_task_transfer_waitting_request($kode_project, $kode_task, $kode_staf);
         $tanggal_transfer = date('Y-m-d');
@@ -213,14 +214,14 @@ class Dashboard extends CI_Controller {
             $staf_model->update_start_tranfer_waitting_transfer($kode_project, $kode_task, $kode_staf_transfer_task);
 
             $log_model->update_transfer_proses($kode_task, $kode_project, $kode_staf, $now2, "WAITTING TRANSFER");
-            redirect(base_url('index.php/staf/dashboard'),'refresh');
+            redirect(base_url('staf/dashboard'),'refresh');
         } else {
             // input data transfer
             $staf_model->insert_data_transfer($data_transfer);
             // ubah status task menjadi watting transfer
             $staf_model->update_start_tranfer_waitting_transfer($kode_project, $kode_task, $kode_staf_transfer_task);
             $log_model->update_transfer_proses($kode_task, $kode_project, $kode_staf, $now2, "WAITTING TRANSFER");
-            redirect(base_url('index.php/staf/dashboard'),'refresh');
+            redirect(base_url('staf/dashboard'),'refresh');
         }
     }
 
@@ -246,7 +247,7 @@ class Dashboard extends CI_Controller {
             $staf_model->staf_update_status_full($kode_staf);
             $log_model->update_transfer_confirm($kode_task, $kode_project, $kode_staf, $kode_staf_transfer, $now2, "TRANSFER OKE");
 
-            redirect(base_url('index.php/staf/dashboard'),'refresh');
+            redirect(base_url('staf/dashboard'),'refresh');
         } if ($answer  == "no") {
             echo "No";
             $staf_model->update_data_ditolak_taks_back_start($kode_task, $kode_project, $kode_staf, $kode_staf_transfer);
@@ -254,7 +255,7 @@ class Dashboard extends CI_Controller {
             $staf_model->update_status_transfer($kode_transfer, $kode_project, $kode_task, $kode_staf, "TIDAK");
             // status task transfer kembali menjadi start
             $log_model->update_transfer_confirm_no($kode_task, $kode_project, $kode_staf, $kode_staf_transfer, $now2, "TRANSFER NO");
-            redirect(base_url('index.php/staf/dashboard'),'refresh');
+            redirect(base_url('staf/dashboard'),'refresh');
         }
     }
 

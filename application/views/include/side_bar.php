@@ -11,15 +11,20 @@
          <!-- END Brand -->
          <!-- User Info -->
          <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
+            <?php
+            $kode_register = $this->session->userdata('kode_register');
+            $data_register = $this->db->query("SELECT * FROM data_register WHERE kode_register = '$kode_register'");
+            $value_register = $data_register->row_array();
+          ?>
             <div class="sidebar-user-avatar">
-               <a href="<?php echo base_url('index.php/welcome/profile'); ?>">
+               <a href="<?php echo base_url('welcome/profile'); ?>">
                   <img src="<?php echo base_url(); ?>/assets/img/placeholders/avatars/avatar2.jpg" alt="avatar">
                </a>
             </div>
-            <div class="sidebar-user-name"><?php echo $this->session->userdata('nama'); ?></div>
+            <div class="sidebar-user-name"><?php echo $value_register['nama'];?></div>
             <div class="sidebar-user-links">
-               <a href="<?php echo base_url('index.php/welcome/profile'); ?>" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
-               <a href="<?php echo base_url('index.php/login/logout'); ?>" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
+               <a href="<?php echo base_url('welcome/profile'); ?>" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
+               <a href="<?php echo base_url('login/logout'); ?>" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
             </div>
          </div>
          <!-- END User Info -->
@@ -76,16 +81,16 @@
                <a href="<?php echo base_url(); ?>"><i class="gi gi-dashboard sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Projects</span></a>
             </li>
             <li>
-               <a href="<?php echo base_url();?>index.php/welcome/create_project"><i class="gi gi-building sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Create Project</span></a>
+               <a href="<?php echo base_url();?>welcome/create_project"><i class="gi gi-building sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Create Project</span></a>
             </li>
             <li>
-               <a href="<?php echo base_url();?>index.php/welcome/workload"><i class="gi gi-server sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Workload</span></a>
+               <a href="<?php echo base_url();?>welcome/workload"><i class="gi gi-server sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Workload</span></a>
             </li>
             <li>
-               <a href="<?php echo base_url();?>index.php/welcome/timeline"><i class="gi gi-lightbulb sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Timeline</span></a>
+               <a href="<?php echo base_url();?>welcome/timeline"><i class="gi gi-lightbulb sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Timeline</span></a>
             </li>
             <li>
-               <a href="<?php echo base_url();?>index.php/welcome/calender"><i class="gi gi-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Calender</span></a>
+               <a href="<?php echo base_url();?>welcome/calender"><i class="gi gi-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Calender</span></a>
             </li>
 
          </ul>

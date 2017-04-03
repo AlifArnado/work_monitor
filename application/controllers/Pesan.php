@@ -23,6 +23,7 @@ class Pesan extends CI_Controller {
 
         $now2 = date('Y-m-d H:i:s');
 
+        $kode_project = $this->input->post('kode_project');
         $kode_staf = $this->input->post('kode_staf');
         $nama_staf = $this->input->post('nama_pesan');
         $kode_task = $this->input->post('kode_task');
@@ -46,7 +47,7 @@ class Pesan extends CI_Controller {
             //print_r($data_pesan);
             // input pesan gunakan task pesan yang ada
             $pesan_model->simpan_pesan($data_pesan);
-            redirect(base_url('index.php/staf/dashboard/detail_task/'.$kode_task),'refresh');
+            redirect(base_url('staf/dashboard/detail_task/'.$kode_task.'/'.$kode_project),'refresh');
 
         } else {
             echo "data tidak ada";
@@ -66,7 +67,7 @@ class Pesan extends CI_Controller {
                 );
             $pesan_model->simpan_pesan($data_pesan);
             $data['data_pesan'] = $pesan_model->view_data_pesan($kode_pesan, $kode_task);
-            redirect(base_url('index.php/staf/dashboard/detail_task/'.$kode_task),'refresh');
+            redirect(base_url('staf/dashboard/detail_task/'.$kode_task.'/'.$kode_project),'refresh');
         }
     }
 
@@ -89,7 +90,7 @@ class Pesan extends CI_Controller {
         $valid = $query->num_rows();
 
         if ($valid > 0) {
-            echo "data ada";
+            // echo "data ada";
             $kode_pesan = $kode_pesan_in->kode_pesan;
             $data_pesan = array(
                     'kode_pesan' => $kode_pesan,
@@ -102,10 +103,10 @@ class Pesan extends CI_Controller {
             //print_r($data_pesan);
             // input pesan gunakan task pesan yang ada
             $pesan_model->simpan_pesan($data_pesan);
-            redirect(base_url('index.php/welcome/detail_task/'.$kode_task),'refresh');
+            redirect(base_url('welcome/detail_task/'.$kode_task),'refresh');
 
         } else {
-            echo "data tidak ada";
+            // echo "data tidak ada";
 
             // buat kode pesan
             $bb = $this->db->query("SELECT * FROM data_pesan");
@@ -122,7 +123,7 @@ class Pesan extends CI_Controller {
                 );
             $pesan_model->simpan_pesan($data_pesan);
             $data['data_pesan'] = $pesan_model->view_data_pesan($kode_pesan, $kode_task);
-            redirect(base_url('index.php/welcome/detail_task/'.$kode_task),'refresh');
+            redirect(base_url('welcome/detail_task/'.$kode_task),'refresh');
         }
     }
 

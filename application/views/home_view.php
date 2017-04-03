@@ -24,7 +24,7 @@
            <?php if ($nomor_telepon == "Not Set"): ?>
              <div class="alert alert-danger alert-dismissable">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-              <h4><i class="fa fa-times-circle"></i> IMPORTANT</h4> Please provide your mobile phone number  <a href="<?php echo base_url('index.php/welcome/profile'); ?>" data-toggle="modal">here</a>!
+              <h4><i class="fa fa-times-circle"></i> IMPORTANT</h4> Please provide your mobile phone number  <a href="<?php echo base_url('welcome/profile'); ?>" data-toggle="modal">here</a>!
             </div>
            <?php else: ?>
 

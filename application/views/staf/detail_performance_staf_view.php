@@ -25,8 +25,8 @@
                             </div>
                         </div>
                         <ul class="breadcrumb breadcrumb-top">
-                            <li><a href="<?php echo base_url('index.php/staf/dashboard/'); ?>">Home</a></li>
-                            <li><a href="<?php echo base_url('index.php/staf/dashboard/performance_staf'); ?>">Performance</a></li>
+                            <li><a href="<?php echo base_url('staf/dashboard/'); ?>">Home</a></li>
+                            <li><a href="<?php echo base_url('staf/dashboard/performance_staf'); ?>">Performance</a></li>
                             <li><a href="" onclick="window.history.back();"">Detail Tasks</a></li>
                         </ul>
                         <!-- END Datatables Header -->

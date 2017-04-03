@@ -64,7 +64,9 @@
                                                 <small> <?php echo $row->posisi; ?> </small>
                                                 <small>
                                                     <?php
-                                                        if (empty($value['judul_task'])) {
+                                                         if (empty($value['judul_task'])) {
+                                                            echo "<br> No Job";
+                                                        } else if ($value['status_task'] == 'Finish') {
                                                             echo "<br> No Job";
                                                         } else {
                                                             $data_project = $this->db->query("SELECT * FROM data_project WHERE kode_project = '$kode_project'");

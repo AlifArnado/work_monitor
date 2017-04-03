@@ -117,21 +117,33 @@
 
                                             </div>
                                             <div class="col-xs-8">
-                                            <?php if (empty($value['judul_task'])): ?>
-                                                <h3>
-                                                    <strong>No Job</strong><br>
-                                                    <small>Handle Project</small>
-                                                </h3>
-                                            <?php else: ?>
-                                                <?php
+
+                                            <?php
+                                                if (empty($value['judul_task'])) {
+                                                    echo "
+                                                    <h3>
+                                                        <strong>No Job</strong><br>
+                                                        <small>Handle Project</small>
+                                                    </h3>
+                                                    ";
+                                                } else if ($value['status_task'] == 'Finish') {
+                                                    echo "
+                                                    <h3>
+                                                        <strong>No Job</strong><br>
+                                                        <small>Handle Project</small>
+                                                    </h3>
+                                                    ";
+                                                } else {
                                                     $data_project = $this->db->query("SELECT * FROM data_project WHERE kode_project = '$kode_project'");
                                                     $value_project = $data_project->row_array();
-                                                ?>
-                                                <h3>
-                                                    <strong><?php echo $value_project['project_name']; ?></strong><br>
-                                                    <small>Handle Project</small>
-                                                </h3>
-                                            <?php endif ?>
+
+                                                    echo "<h3>
+                                                        <strong>". $value_project['project_name'] ."</strong><br>
+                                                        <small>Handle Project</small>
+                                                        </h3>";
+
+                                                }
+                                             ?>
                                             </div>
                                         </div>
                                     </div>

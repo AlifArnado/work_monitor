@@ -25,7 +25,23 @@ class Dashboard extends CI_Controller {
     }
 
     public function performance_staf() {
-        $this->load->view('staf/performance_staf_view');
+       // load model performance
+       $this->load->model('staf/Performance_model');
+       $performance_model = new Performance_model();
+
+        $kode_staf = $this->session->userdata('kode_staf');
+        $data['performance_staf'] = $performance_model->detail_performance_task($kode_staf);
+        $this->load->view('staf/performance_staf_view', $data);
+    }
+
+    public function detail_performance_task($kode_project, $kode_staf) {
+       // load model performance
+       $this->load->model('staf/Performance_model');
+       $performance_model = new Performance_model();
+
+        $kode_staf = $this->session->userdata('kode_staf');
+        $data['performance_task_staf'] = $performance_model->detail_performance_task_click($kode_project, $kode_staf);
+        $this->load->view('staf/detail_performance_staf_view', $data);
     }
 
     public function detail_project($kode_project, $kode_staf, $kode_task) {

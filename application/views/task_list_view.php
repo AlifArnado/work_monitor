@@ -42,12 +42,13 @@
                                     <?php foreach ($data_project as $row): $kode_project = $row->kode_project; ?>
 
                                     <!-- Menu Content -->
-                                    <h3><?php echo $row->project_name; ?></h3>
+                                    <h3><?php echo $row->project_name; $project_name = $row->project_name; ?></h3>
                                     <p><i class="fa fa-user-secret"></i>&nbsp;<strong>Ordered By: <?php echo $row->ae_name; ?></strong>&nbsp;</p>
                                     <p><i class="fa fa-clock-o"></i>&nbsp;<strong>Deadline</strong> : <?php echo $row->deadline_project; ?></p>
                                     <p><i class="fa fa-bolt"></i>&nbsp;<strong>Rational Finish Time</strong> : <?php echo $row->deadline_project; ?> </p>
                                     <br/>
                                     <a href="<?php echo base_url('index.php/welcome/brief/'.$row->kode_project); ?>"><button type="button" class="btn btn-primary">Open Brief</button></a>
+                                    <a id="finish_project" href="<?php echo base_url('index.php/welcome/close_project/'.$row->kode_project); ?>"><button type="button" class="btn btn-success">Finish Project</button></a>
                                     <!-- END Menu Content -->
 
                                     <?php endforeach ?>
@@ -191,6 +192,37 @@
 
 
         <?php $this->load->view('include/include_script.php'); ?>
+
+        <script type="text/javascript">
+
+                $('#finish_project').on("click", function(e) {
+                  e.preventDefault();
+                  var url = $(this).attr('href');
+                  var project_name = "<?php echo $project_name; ?>";
+                  swal({
+                      title: "FINISH PROJECT "+project_name,
+                      text: "Anda yakin ingin mengakhiri project ini ?",
+                      type: "warning",
+                      showCancelButton: true,
+                      confirmButtonColor: '#DD6B55',
+                      confirmButtonText: 'Yes, Finish Project!',
+                      cancelButtonText: "No, Tidak!",
+                      confirmButtonClass: "btn-danger",
+                      closeOnConfirm: false,
+                      closeOnCancel: false
+                    },
+                    function(isConfirm) {
+                      if (isConfirm) {
+                        swal("Project Finish!", "", "success");
+                        window.location.replace(url);
+                      } else {
+                        swal("Cancelado", "", "error");
+                      }
+                    });
+                });
+
+
+        </script>
 
     </body>
 </html>

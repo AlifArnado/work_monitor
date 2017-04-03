@@ -79,6 +79,15 @@ class Log_model extends CI_Model {
         return $query->result();
     }
 
+    public function update_log_project($kode_project) {
+        $this->db->set('status_project', 'FINISH');
+        $this->db->where('kode_project', $kode_project);
+        $this->db->update('data_log_project');
+        $query = $this->db->get('data_log_project');
+        return $query->row();
+    }
+
+
 
 
 

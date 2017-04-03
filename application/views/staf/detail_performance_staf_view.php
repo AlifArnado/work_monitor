@@ -27,6 +27,7 @@
                         <ul class="breadcrumb breadcrumb-top">
                             <li><a href="<?php echo base_url('index.php/staf/dashboard/'); ?>">Home</a></li>
                             <li><a href="<?php echo base_url('index.php/staf/dashboard/performance_staf'); ?>">Performance</a></li>
+                            <li><a href="" onclick="window.history.back();"">Detail Tasks</a></li>
                         </ul>
                         <!-- END Datatables Header -->
 
@@ -43,13 +44,12 @@
                                             <th class="text-center">Tanggal Project</th>
                                             <th class="text-center">Kode Project</th>
                                             <th class="text-center">Nama Project</th>
+                                            <th class="text-center">Nama Task</th>
                                             <th class="text-center">Nama AE</th>
-                                            <th class="text-center">Status Project</th>
-                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $no = 1; foreach ($performance_staf as $row_performance): ?>
+                                        <?php $no = 1; foreach ($performance_task_staf as $row_performance): ?>
                                         <tr>
                                             <td class="text-center"><?php echo $no++; ?></td>
                                             <td class="text-center"><?php echo $row_performance->tanggal_task; ?></td>
@@ -64,21 +64,8 @@
                                             <td class="text-center">
                                                 <?php echo $row_performance->task_request; ?>
                                             </td>
-                                            <td class="text-center">
-                                                <?php
-                                                if ($row_performance->status_task == 'Start'){
-                                                    echo '<span class="label label-success"><i class="gi gi-lightbulb"></i> WAITTING</span>';
-                                                } else if ($row_performance->status_task == 'Proses'){
-                                                    echo '<span class="label label-danger"><i class="hi hi-fire"></i> PROCESS</span>';
-                                                } else if ($row_performance->status_task == 'Pending'){
-                                                    echo '<span class="label label-warning"><i class="hi hi-time"></i> PENDING</span>';
-                                                } else if ($row_performance->status_task == 'Finish'){
-                                                    echo '<span class="label label-info"><b> <i class="hi hi-flag"></i> FINSIH</b></span>';
-                                                }
-                                              ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="<?php echo base_url('index.php/staf/dashboard/detail_performance_task/'.$row_performance->kode_project.'/'.$this->session->userdata('kode_staf')); ?>" data-toggle="tooltip" title="Edit" class="btn btn-sm btn-default"><i class="fa fa-file-text-o"></i> Detail Task</a>
+                                             <td class="text-center">
+                                                <?php echo $row_performance->judul_task; ?>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>

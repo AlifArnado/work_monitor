@@ -32,4 +32,6 @@ function time_elapsed_string($datetime, $full = false) {
     if (!$full) $string = array_slice($string, 0, 1);
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
+date_default_timezone_set("Asia/Jakarta");
+
 ?>

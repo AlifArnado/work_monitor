@@ -24,4 +24,9 @@
 <script src="<?php echo base_url('assets/js/pages/compCalendar.js'); ?>"></script>
 <script>$(function(){ CompCalendar.init(); });</script>
 
+<script src="<?php echo base_url('assets/js/vendor/modernizr.min.js'); ?>"></script>
+
+<script type="text/javascript" src="<?php echo base_url('assets/node_modules/sweetalert/dist/sweetalert.min.js'); ?>"></script>
+
+
 

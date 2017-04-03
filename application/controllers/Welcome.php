@@ -554,4 +554,18 @@ class Welcome extends CI_Controller {
     public function profile() {
         $this->load->view('profile_view');
     }
+
+    public function close_project($kode_project) {
+        // laod model project
+        $this->load->model('Project_model');
+        $project_model = new Project_model();
+
+        // load log project
+        $this->load->model('Log_model');
+        $log_model = new Log_model();
+
+        $log_model->update_log_project($kode_project);
+        $project_model->update_project_finish($kode_project, "FINISH");
+        redirect(base_url().'index.php' ,'refresh');
+    }
 }

@@ -63,9 +63,9 @@
                                             <td class="text-center"><?php echo '<span class="label label-info"><i class="hi hi-transfer"></i> TRANSFER</span>'; ?></td>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <a href="<?php echo base_url('staf/dashboard/confirm_transfer/'.$row->kode_transfer.'/'.$row->kode_project.'/'.$this->session->userdata('kode_staf').'/'.$row->kode_task.'/yes/'.$row->kode_staf_transfer); ?>" data-toggle="tooltip" title="Edit" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Accept Task</a>
-                                                    <a href="<?php echo base_url('staf/dashboard/detail_project_transfer/'.$row->kode_project.'/'.$this->session->userdata('kode_staf').'/'.$row->kode_task.'/'.$row->kode_staf_transfer); ?>" data-toggle="tooltip" title="Delete" class="btn btn-sm btn-default"><i class="fa fa-file-text-o"></i> Detail Job</a>
-                                                    <a href="<?php echo base_url('staf/dashboard/confirm_transfer/'.$row->kode_transfer.'/'.$row->kode_project.'/'.$this->session->userdata('kode_staf').'/'.$row->kode_task.'/no/'.$row->kode_staf_transfer); ?>" data-toggle="tooltip" title="Delete" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
+                                                    <a id="terimaproject" href="<?php echo base_url('index.php/staf/dashboard/confirm_transfer/'.$row->kode_transfer.'/'.$row->kode_project.'/'.$this->session->userdata('kode_staf').'/'.$row->kode_task.'/yes/'.$row->kode_staf_transfer); ?>" data-toggle="tooltip" title="Edit" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Accept Task</a>
+                                                    <a href="<?php echo base_url('index.php/staf/dashboard/detail_project_transfer/'.$row->kode_project.'/'.$this->session->userdata('kode_staf').'/'.$row->kode_task.'/'.$row->kode_staf_transfer); ?>" data-toggle="tooltip" title="Delete" class="btn btn-sm btn-default"><i class="fa fa-file-text-o"></i> Detail Job</a>
+                                                    <a href="<?php echo base_url('index.php/staf/dashboard/confirm_transfer/'.$row->kode_transfer.'/'.$row->kode_project.'/'.$this->session->userdata('kode_staf').'/'.$row->kode_task.'/no/'.$row->kode_staf_transfer); ?>" data-toggle="tooltip" title="Delete" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -99,7 +99,7 @@
                                             <td class="text-center"><?php echo $no++; ?></td>
                                             <td class="text-center"><?php echo $row->task_request; ?></td>
                                             <td class="text-center"><?php echo $row->judul_task; ?></td>
-                                            <td class="text-center"><?php echo $row->tanggal_task; ?></td>
+                                            <td class="text-center"><?php echo $row->waktu; ?></td>
                                             <td class="text-center">
                                               <?php
                                                 if ($row->status_task == 'Start'){
@@ -116,9 +116,9 @@
                                               </td>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <a href="<?php echo base_url('staf/dashboard/pilih_transfer/'.$row->kode_project.'/'.$this->session->userdata('kode_staf').'/'.$row->kode_task); ?>" data-toggle="tooltip" title="Edit" class="btn btn-sm btn-info"><i class="hi hi-transfer"></i> Transfer Task</a>
+                                                    <a href="<?php echo base_url('index.php/staf/dashboard/pilih_transfer/'.$row->kode_project.'/'.$this->session->userdata('kode_staf').'/'.$row->kode_task); ?>" data-toggle="tooltip" title="Edit" class="btn btn-sm btn-info"><i class="hi hi-transfer"></i> Transfer Task</a>
 
-                                                    <a href="<?php echo base_url('staf/dashboard/detail_project/'.$row->kode_project.'/'.$this->session->userdata('kode_staf').'/'.$row->kode_task); ?>" data-toggle="tooltip" title="Delete" class="btn btn-sm btn-default"><i class="fa fa-file-text-o"></i> Detail Job</a>
+                                                    <a href="<?php echo base_url('index.php/staf/dashboard/detail_project/'.$row->kode_project.'/'.$this->session->userdata('kode_staf').'/'.$row->kode_task); ?>" data-toggle="tooltip" title="Delete" class="btn btn-sm btn-default"><i class="fa fa-file-text-o"></i> Detail Job</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -140,5 +140,14 @@
 
 
         <?php $this->load->view('./include/include_script.php'); ?>
+        <script type="text/javascript">
+            $('#terimaproject').on("click", function(e) {
+                  e.preventDefault();
+                  var url = $(this).attr('href');
+                  swal("Good job!", "Project di proses", "success");
+                  window.location.replace(url);
+            });
+        </script>
     </body>
 </html>
+

@@ -21,7 +21,7 @@
                     <div id="page-content">
                         <div class="content-header">
                             <div class="header-section">
-                            <form action="<?php echo base_url('staf/dashboard/transfer_processing'); ?>" method="POST">
+                            <form action="<?php echo base_url('index.php/staf/dashboard/transfer_processing'); ?>" method="POST">
 
                             <input type="hidden" name="kode_project" value="<?php echo $kode_project; ?>">
                             <input type="hidden" name="kode_task" value="<?php echo $kode_task; ?>">

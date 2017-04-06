@@ -21,7 +21,7 @@
                     <div id="page-content">
                         <div class="content-header">
                             <div class="header-section">
-                            <form action="<?php echo base_url('welcome/heandle_option'); ?>" method="POST">
+                            <form action="<?php echo base_url('index.php/welcome/heandle_option'); ?>" method="POST">
 
                             <input type="hidden" name="kode_project" value="<?php echo $kode_project; ?>">
                             <input type="hidden" name="kode_berkas_task" value="<?php echo $kode_berkas_task; ?>" >

@@ -20,6 +20,8 @@
 <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
 <link rel="stylesheet" href=" <?php echo base_url('assets/css/themes.css'); ?> ">
 
+<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/datepicker.css'); ?>">
+
 <!-- include sweet alert -->
 <link rel="stylesheet" href="<?php echo base_url('assets/node_modules/sweetalert/dist/sweetalert.css'); ?> ">
 

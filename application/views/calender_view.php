@@ -27,7 +27,7 @@
                         </div>
                         <ul class="breadcrumb breadcrumb-top">
                             <li>Components</li>
-                            <li><a href="<?php echo base_url('welcome/calender'); ?>">Calendar</a></li>
+                            <li><a href="<?php echo base_url('index.php/welcome/calender'); ?>">Calendar</a></li>
                         </ul>
                         <!-- END Calendar Header -->
 
@@ -36,7 +36,7 @@
                             <div class="row">
                                 <!-- <div class="col-md-2">
                                     <div class="block-section">
-                                        <a class="btn btn-block btn-primary" href="<?php //echo base_url('welcome/input_event'); ?>"> <i class="fa fa-calendar"></i> Add Event </a>
+                                        <a class="btn btn-block btn-primary" href="<?php //echo base_url('index.php/welcome/input_event'); ?>"> <i class="fa fa-calendar"></i> Add Event </a>
                                     </div>
                                     <div class="block-section">
                                         <div class="block-section text-center text-muted">

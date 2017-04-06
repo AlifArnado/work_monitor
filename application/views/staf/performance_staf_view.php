@@ -25,8 +25,8 @@
                             </div>
                         </div>
                         <ul class="breadcrumb breadcrumb-top">
-                            <li><a href="<?php echo base_url('staf/dashboard/'); ?>">Home</a></li>
-                            <li><a href="<?php echo base_url('staf/dashboard/performance_staf'); ?>">Performance</a></li>
+                            <li><a href="<?php echo base_url('index.php/staf/dashboard/'); ?>">Home</a></li>
+                            <li><a href="<?php echo base_url('index.php/staf/dashboard/performance_staf'); ?>">Performance</a></li>
                         </ul>
                         <!-- END Datatables Header -->
 
@@ -78,7 +78,7 @@
                                               ?>
                                             </td>
                                             <td class="text-center">
-                                                <a href="<?php echo base_url('staf/dashboard/detail_performance_task/'.$row_performance->kode_project.'/'.$this->session->userdata('kode_staf')); ?>" data-toggle="tooltip" title="Edit" class="btn btn-sm btn-default"><i class="fa fa-file-text-o"></i> Detail Task</a>
+                                                <a href="<?php echo base_url('index.php/staf/dashboard/detail_performance_task/'.$row_performance->kode_project.'/'.$this->session->userdata('kode_staf')); ?>" data-toggle="tooltip" title="Edit" class="btn btn-sm btn-default"><i class="fa fa-file-text-o"></i> Detail Task</a>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>

@@ -61,7 +61,7 @@
                                                 <input type="text" id="example-text-input" name="nomor_telepon" value="<?php echo $value_register['nomor_telepon']; ?>" class="form-control" placeholder="<?php echo $value_register['nomor_telepon']; ?>">
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label class="col-md-3 control-label" for="example-text-input">Icon Profil</label>
                                             <div class="col-md-9">
                                                 <input type="file" name="img_profile" accept="image/*" onchange="loadFile(event)">
@@ -69,7 +69,7 @@
                                             <div class="col-md-9">
                                                 <img id="output" height="100" class="img img-circle" style="margin-top: 10px; width: 95px; " />
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <div class="col-md-9">
                                                 <input type="submit" class="btn btn-success" name="proses" value="UPDATE DATA">

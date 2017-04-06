@@ -27,50 +27,50 @@ class Login extends CI_Controller {
         $password = $this->input->post('login-password');
         $posisi = $this->input->post('posisi');
 
-        if ($posisi == "AE") {
+        //print_r($this->input->post());
 
-            $data_register = $login_model->cekLogin($email, $password);
-                if ($login_model->cekLogin($email, $password)) {
-                    //echo "data ada";
-                    $session_data = array(
-                            'kode_register' => $data_register->kode_register,
+        $login_ae = $login_model->cekLogin($email, $password);
+        $valid_ae = count($login_ae);
+        //print_r($valid_ae);
+        if ($valid_ae > 0) {
+            //echo "<pre>";
+            //print_r($login_ae);
+            $session_data = array(
+                            'kode_register' => $login_ae->kode_register,
                             'email' => $email,
                             'logged_in' => TRUE,
-                            'nama' => $data_register->nama,
-                            'icon_profil' => $data_register->icon_profil,
-                            'nomor_telepon' => $data_register->nomor_telepon
+                            'nama' => $login_ae->nama,
+                            'icon_profil' => $login_ae->icon_profil,
+                            'nomor_telepon' => $login_ae->nomor_telepon
                         );
-                    $this->session->set_userdata($session_data);
-                    redirect(base_url().'welcome/', 'refresh');
-                } else {
-                    redirect(base_url().'login/', 'refresh');
-                }
-
-        } else if ($posisi == "STAF") {
-            $data_staf = $staf_model->cekLogin_staf($email);
-            if ($staf_model->cekLogin_staf($email)) {
-                // echo "data ada";
+            //print_r($session_data);
+                $this->session->set_userdata($session_data);
+                redirect(base_url().'index.php/welcome/', 'refresh');
+        } else {
+          if (($password === "oranye123") == true) {
+            $login_staff = $staf_model->cekLogin_staf($email, $password);
+            $valid_staf = count($login_staff);
+            if ($valid_staf > 0) {
                 $session_data = array(
                        'logged_in' => TRUE,
-                        'kode_staf' => $data_staf->id_staf,
-                        'nama_staf' => $data_staf->nama_staf,
-                        'posisi' => $data_staf->posisi,
-                        'status' => $data_staf->status_staf,
-                        'icon' => $data_staf->icon
+                        'kode_staf' => $login_staff->id_staf,
+                        'nama_staf' => $login_staff->nama_staf,
+                        'posisi' => $login_staff->posisi,
+                        'nomor_telepon' => $login_proses->nomor_telepon,
+                        'status' => $login_staff->status_staf,
+                        'icon' => $login_staff->icon
                     );
                 //print_r($session_data);
                 $this->session->set_userdata($session_data);
-                redirect(base_url().'staf/dashboard','refresh');
+                redirect(base_url().'index.php/staf/dashboard','refresh');
             } else {
-                //echo "data tidak ada";
-                redirect(base_url().'login/', 'refresh');
+                redirect(base_url().'index.php/login/', 'refresh');
             }
-        } else {
-            redirect(base_url().'login/', 'refresh');
-       }
-
-
-    }
+          } else {
+            redirect(base_url().'index.php/login/', 'refresh');
+          }
+        }
+      }
 
     public function register_proses() {
 
@@ -120,7 +120,7 @@ class Login extends CI_Controller {
                             'nomor_telepon' => $data_register->nomor_telepon
                         );
                     $this->session->set_userdata($session_data);
-                    redirect(base_url().'welcome/', 'refresh');
+                    redirect(base_url().'index.php/welcome/', 'refresh');
                 }
         }
     }
@@ -132,7 +132,7 @@ class Login extends CI_Controller {
     public function logout() {
         $this->session->unset_userdata('logged_in');
         $this->session->sess_destroy();
-        redirect(base_url().'login/', 'refresh');
+        redirect(base_url().'index.php/login/', 'refresh');
     }
 
 }

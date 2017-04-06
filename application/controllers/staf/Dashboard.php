@@ -112,11 +112,26 @@ class Dashboard extends CI_Controller {
         $this->load->model('Log_model');
         $log_model = new Log_model();
 
+        $this->load->model('Email_model');
+        $email_model = new Email_model();
+
+        $query_staf = $this->db->query("SELECT * FROM data_staf WHERE id_staf = '$kode_staf' ");
+        $data_staf = $query_staf->row();
+
+        $query_task = $this->db->query("SELECT * FROM data_task WHERE kode_task = '$kode_task'");
+        $data_task = $query_task->row();
+
+        $query_project = $this->db->query("SELECT * FROM data_project WHERE kode_project = '$kode_project'");
+        $data_project = $query_project->row();
+
+        $query_ae = $this->db->query("SELECT nama, email, nomor_telepon FROM data_register WHERE nama = '$data_task->task_request'");
+        $data_register = $query_ae->row();
+
         $kode_task = $kode_task;
         $handle_status = $handle;
 
         if ($handle === "work") {
-            // echo "Kerjakan Brief";
+            //echo "Kerjakan Brief <br>";
             // echo $kode_task;
             $staf_model->update_task_start_watting($kode_task);
 
@@ -124,11 +139,32 @@ class Dashboard extends CI_Controller {
             $now2 = date('Y-m-d H:i:s');
             $log_model->update_start_task($kode_task, $now2);
 
-            redirect(base_url('staf/dashboard'),'refresh');
+            // pesan
+            $subject = "WOKU PROSES PROJECT";
+            $pesan = "WOKU PROSES PROJECT Task ".$data_task->judul_task." dengan project ".$data_project->project_name.", sedang di kerjakan oleh ".$data_staf->nama_staf." - Terimakasih";
+            $nomor_tujuan_ae = $data_register->nomor_telepon;
+            $email_tujuan_ae = $data_register->email;
+
+            //print_r($pesan."<br>".$nomor_tujuan_ae. "<br>". $email_tujuan_ae);
+            $email_model->send_mail($email_tujuan_ae, $subject, $pesan);
+            $email_model->send_sms($nomor_tujuan_ae, $pesan);
+
+            redirect(base_url('index.php/staf/dashboard'),'refresh');
 
         } if ($handle == "waitting") {
-            // echo "Proses Selesai di kerjakan";
-            // echo $kode_task;
+
+            //load  email model
+            //echo "Proses Selesai di kerjakan";
+            $subject = "WOKU FINISH PROJECT";
+            $pesan = "WOKU FINISH PROJECT - Task ".$data_task->judul_task." dengan project ".$data_project->project_name.", sudah selesai di kerjakan oleh ".$data_staf->nama_staf." Terimakasih";
+            $nomor_tujuan_ae = $data_register->nomor_telepon;
+            $email_tujuan_ae = $data_register->email;
+
+            //print_r($pesan."<br>".$nomor_tujuan_ae. "<br>". $email_tujuan_ae);
+            $email_model->send_mail($email_tujuan_ae, $subject, $pesan);
+            $email_model->send_sms($nomor_tujuan_ae, $pesan);
+
+            //echo $kode_task;
             $now2 = date('Y-m-d H:i:s');
             $log_model->update_finish_taks($kode_task, $now2);
 
@@ -137,10 +173,10 @@ class Dashboard extends CI_Controller {
             $valid = $query->num_rows();
 
             if ($valid > 0) {
-                redirect(base_url('staf/dashboard'),'refresh');
+                redirect(base_url('index.php/staf/dashboard'),'refresh');
             } else {
                 $staf_model->staf_update_status_free($kode_staf);
-                redirect(base_url('staf/dashboard'),'refresh');
+                redirect(base_url('index.php/staf/dashboard'),'refresh');
             }
         }
     }
@@ -169,6 +205,10 @@ class Dashboard extends CI_Controller {
         $this->load->model('Log_model');
         $log_model = new Log_model();
 
+        // load model email
+        $this->load->model('Email_model');
+        $email_model = new Email_model();
+
         $now2 = date('Y-m-d H:i:s');
 
         // echo "<pre>";
@@ -187,6 +227,18 @@ class Dashboard extends CI_Controller {
         $tb_data_task = $this->db->query("SELECT * FROM data_task WHERE kode_project = '$kode_project' AND kode_task = '$kode_task' AND kode_staf = '$kode_staf_transfer_task'");
         $data_task = $tb_data_task->row();
         //print_r($data_task->kode_task);
+
+        $query_staf = $this->db->query("SELECT * FROM data_staf WHERE id_staf = '$kode_staf' ");
+        $data_staf = $query_staf->row();
+
+        $query_staf_transfer = $this->db->query("SELECT nama_staf FROM data_staf WHERE id_staf = '$kode_staf_transfer_task' ");
+        $data_staf_trasnfer = $query_staf_transfer->row();
+
+        $query_task = $this->db->query("SELECT * FROM data_task WHERE kode_task = '$kode_task'");
+        $data_task = $query_task->row();
+
+        $query_project = $this->db->query("SELECT * FROM data_project WHERE kode_project = '$kode_project'");
+        $data_project = $query_project->row();
 
         $staf_model->update_task_transfer_waitting_request($kode_project, $kode_task, $kode_staf);
         $tanggal_transfer = date('Y-m-d');
@@ -208,20 +260,37 @@ class Dashboard extends CI_Controller {
 
         if ($status == 'Free') {
 
+            // pesan transfer
+            $subject = "WOKU TRANSFER PROJECT";
+            $pesan = "WOKU Terdapat task yang di kirimkan untuk anda : ".$data_task->judul_task.", pengirim ".$data_staf_trasnfer->nama_staf." - Terimakasih";
+            $nomor_telepon = $data_staf->nomor_telepon;
+            $email = $data_staf->email;
+
+            $email_model->send_mail($email, $subject, $pesan);
+            $email_model->send_sms($nomor_telepon, $pesan);
+
             // input data transfer
             $staf_model->insert_data_transfer($data_transfer);
             // ubah status task menjadi watting transfer
             $staf_model->update_start_tranfer_waitting_transfer($kode_project, $kode_task, $kode_staf_transfer_task);
 
             $log_model->update_transfer_proses($kode_task, $kode_project, $kode_staf, $now2, "WAITTING TRANSFER");
-            redirect(base_url('staf/dashboard'),'refresh');
+            redirect(base_url('index.php/staf/dashboard'),'refresh');
         } else {
+            // pesan transfer
+            $subject = "WOKU TRANSFER PROJECT";
+            $pesan = "WOKU Terdapat task yang di kirimkan untuk anda : ".$data_task->judul_task.", pengirim ".$data_staf_trasnfer->nama_staf." - Terimakasih";
+            $nomor_telepon = $data_staf->nomor_telepon;
+            $email = $data_staf->email;
+
+            $email_model->send_mail($email, $subject, $pesan);
+            $email_model->send_sms($nomor_telepon, $pesan);
             // input data transfer
             $staf_model->insert_data_transfer($data_transfer);
             // ubah status task menjadi watting transfer
             $staf_model->update_start_tranfer_waitting_transfer($kode_project, $kode_task, $kode_staf_transfer_task);
             $log_model->update_transfer_proses($kode_task, $kode_project, $kode_staf, $now2, "WAITTING TRANSFER");
-            redirect(base_url('staf/dashboard'),'refresh');
+            redirect(base_url('index.php/staf/dashboard'),'refresh');
         }
     }
 
@@ -231,14 +300,37 @@ class Dashboard extends CI_Controller {
         $this->load->model('staf/Staf_model');
         $staf_model = new Staf_model();
 
+        // load email model
+        $this->load->model('Email_model');
+        $email_model = new Email_model();
+
         // load module log
         $this->load->model('Log_model');
         $log_model = new Log_model();
 
+        $query_staf = $this->db->query("SELECT * FROM data_staf WHERE id_staf = '$kode_staf_transfer' ");
+        $data_staf = $query_staf->row();
+
+        $query_staf_terima = $this->db->query("SELECT * FROM data_staf WHERE id_staf = '$kode_staf' ");
+        $data_staf_terima = $query_staf_terima->row();
+
+        $query_task = $this->db->query("SELECT * FROM data_task WHERE kode_task = '$kode_task'");
+        $data_task = $query_task->row();
+
+        $query_project = $this->db->query("SELECT * FROM data_project WHERE kode_project = '$kode_project'");
+        $data_project = $query_project->row();
+
          $now2 = date('Y-m-d H:i:s');
 
         if ($answer == "yes") {
-            echo "Yes";
+            //echo "Yes";
+            $subject = "WOKU TRANSFER TASK DI TERIMA";
+            $pesan = "WOKU - Transfer task". $data_task->judul_task." Diterima oleh ".$data_staf_terima->nama_staf. " - Terimakasih";
+            $nomor_telepon = $data_staf->nomor_telepon;
+            $email = $data_staf->email;
+            $email_model->send_mail($email, $subject, $pesan);
+            $email_model->send_sms($nomor_telepon, $pesan);
+
             // update id staf yang menerima task , (kode_task, $kode_priject) dan status proses
             $staf_model->update_data_task_baru_transfer($kode_task, $kode_project, $kode_staf, $kode_staf_transfer);
             // status tranfer menjadi yes
@@ -247,15 +339,23 @@ class Dashboard extends CI_Controller {
             $staf_model->staf_update_status_full($kode_staf);
             $log_model->update_transfer_confirm($kode_task, $kode_project, $kode_staf, $kode_staf_transfer, $now2, "TRANSFER OKE");
 
-            redirect(base_url('staf/dashboard'),'refresh');
+            redirect(base_url('index.php/staf/dashboard'),'refresh');
         } if ($answer  == "no") {
-            echo "No";
+            //echo "No";
+
+            $subject = "WOKU TRANSFER TASK DI TOLAK";
+            $pesan = "WOKU - Transfer task ". $data_task->judul_task." Ditolak oleh ".$data_staf_terima->nama_staf. " - Terimakasih";
+            $nomor_telepon = $data_staf->nomor_telepon;
+            $email = $data_staf->email;
+            $email_model->send_mail($email, $subject, $pesan);
+            $email_model->send_sms($nomor_telepon, $pesan);
+
             $staf_model->update_data_ditolak_taks_back_start($kode_task, $kode_project, $kode_staf, $kode_staf_transfer);
             // status tranfer di tolak menjadi TIDAK
             $staf_model->update_status_transfer($kode_transfer, $kode_project, $kode_task, $kode_staf, "TIDAK");
             // status task transfer kembali menjadi start
             $log_model->update_transfer_confirm_no($kode_task, $kode_project, $kode_staf, $kode_staf_transfer, $now2, "TRANSFER NO");
-            redirect(base_url('staf/dashboard'),'refresh');
+            redirect(base_url('index.php/staf/dashboard'),'refresh');
         }
     }
 

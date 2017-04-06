@@ -25,6 +25,14 @@ class Staf_model extends CI_Model {
         return $query->row();
     }
 
+    public function update_status_free($kode_staf) {
+        $this->db->set('status_staf', 'Free');
+        $this->db->where('id_staf', $kode_staf);
+        $this->db->update('data_staf');
+        $query = $this->db->get('data_staf');
+        return $query;
+    }
+
 
 
 

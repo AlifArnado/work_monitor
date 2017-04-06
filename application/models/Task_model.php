@@ -107,6 +107,14 @@ class Task_model extends CI_Model {
         return $query->result();
     }
 
+    public function finish_task($kode_project) {
+        $this->db->set('status_task', 'Finish');
+        $this->db->where('kode_project', $kode_project);
+        $this->db->update('data_task');
+        $query = $this->db->get('data_task');
+        return $query->result();
+    }
+
 
 
 }

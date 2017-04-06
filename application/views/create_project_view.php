@@ -26,7 +26,7 @@
                         <ul class="breadcrumb breadcrumb-top">
                             <li><a href="<?php echo base_url(); ?>">Projects</a>
                             </li>
-                            <li><a href=" <?php echo base_url(); ?>welcome/create_project">Create Projects</a>
+                            <li><a href=" <?php echo base_url(); ?>index.php/welcome/create_project">Create Projects</a>
                             </li>
 
                         </ul>
@@ -64,17 +64,17 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label" for="example-file-multiple-input">Attachment <br><span style="color: red;">file_type[.zip, .pdf, .rar]</span></label>
+                                            <label class="col-md-3 control-label" for="example-file-multiple-input">Attachment </label>
                                             <div class="col-md-9">
-                                            <input type="file" id="example-file-multiple-input" name="images">
+                                            <input type="file" name="images">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label" for="example-text-input">Deadline</label>
+                                            <label class="col-md-3 control-label" >Deadline</label>
                                             <div class="col-md-9">
-                                                <input type="date" required id="example-text-input" name="deadline" class="form-control" >
-                                                 <span class="help-block">Your deadline may conflict with other projects</span>
+                                                <input type="text" required name="deadline" data-date-format="yyyy/mm/dd" id="dp2" class="form-control" placeholder="yyyy/mm/dd" >
+                                                 <!-- <span class="help-block">Your deadline may conflict with other projects</span> -->
                                             </div>
                                         </div>
                                         <?php
@@ -306,5 +306,9 @@
 
 
         <?php $this->load->view('include/include_script.php'); ?>
+
+        <script type="text/javascript">
+            $('#dp2').datepicker();
+        </script>
     </body>
 </html>

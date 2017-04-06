@@ -23,6 +23,15 @@ class Welcome extends CI_Controller {
 		$this->load->view('home_view', $data);
 	}
 
+	public function download($name_file) {
+	 $this->load->helper('download'); //jika sudah diaktifkan di autoload, maka tidak perlu di tulis kembali
+
+	 $name = $name_file;
+	 $data = file_get_contents("./assets/uploads/".$name_file); // letak file pada aplikasi kita
+
+	 force_download($name,$data);
+	}
+
 	public function create_project() {
 		$data_member['member'] = $this->Member_model->getMember();
 		$this->load->view('create_project_view', $data_member);
@@ -113,7 +122,7 @@ class Welcome extends CI_Controller {
         echo $file_name;
 
         $config['upload_path'] = './assets/uploads/';
-        $config['allowed_types'] = 'zip|rar|pdf';
+        $config['allowed_types'] = '*';
         // $config['max_size'] = 3000;
         // $config['max_width'] = 2024;
         // $config['max_height'] = 2024;
@@ -155,7 +164,7 @@ class Welcome extends CI_Controller {
 
         $task_model->saveTask($data_task);
         $berkas_task_model->task_insert_data($data_berkas_task);
-        redirect(base_url().'welcome/pilih_handle_task/'.$kode_project.'/'.$kode_task);
+        redirect(base_url().'index.php/welcome/pilih_handle_task/'.$kode_project.'/'.$kode_task);
     }
 
     public function pilih_handle_task($kode_project, $kode_task) {
@@ -235,7 +244,7 @@ class Welcome extends CI_Controller {
         echo $file_name;
 
 		$config['upload_path'] = './assets/uploads/';
-		$config['allowed_types'] = 'zip|rar|pdf';
+		$config['allowed_types'] = '*';
 		// $config['max_size'] = 3000;
 		// $config['max_width'] = 2024;
 		// $config['max_height'] = 2024;
@@ -292,7 +301,7 @@ class Welcome extends CI_Controller {
 
         $berkas_task_model->task_insert_data($data_berkas_task);
  		$project_model->saveCreateProject($data);
- 		redirect(base_url().'welcome/pilih_handle/'.$kode_project.'/'.$kode_berkas_task);
+ 		redirect(base_url().'index.php/welcome/pilih_handle/'.$kode_project.'/'.$kode_berkas_task);
 	}
 
 	public function pilih_staf() {
@@ -419,7 +428,7 @@ class Welcome extends CI_Controller {
 
                 // beri notifikasi ae
                 $subject = "Project anda ".$nama_project." di pending";
-                $text = "Project anda ".$nama_project." di pending Oleh".$name_ae;
+                $text = "Project anda ".$nama_project." di pending Oleh ".$name_ae;
 
                 $sendmail_model->send_mail_create_pending_project($email_ae, $subject, $text);
                 $sendmail_model->send_sms_ae($nomor_telepon_ae, $text);
@@ -507,6 +516,10 @@ class Welcome extends CI_Controller {
         $this->load->model('Log_model');
         $log_model = new Log_model();
 
+        // load model Sendemial_model
+        $this->load->model('Email_model');
+        $sendmail_model = new Email_model();
+
         $waktu_sekarang = date('Y-m-d H:i:s');
 
         // create log id project
@@ -518,11 +531,30 @@ class Welcome extends CI_Controller {
         $kode_task = $this->input->post('kode_task');
         $kode_staf = $this->input->post('kode_staf');
         $status_staf = $this->input->post('status');
-        echo $kode_project;
-        echo $kode_task;
+        // echo $kode_project;
+        // echo $kode_task;
+
+        $data_project = $this->db->query("SELECT * FROM data_project WHERE kode_project = '$kode_project'");
+        $value = $data_project->row_array();
+
+        $data_staf = $this->db->query("SELECT * FROM data_staf WHERE id_staf = '$kode_staf'");
+        $value_staf = $data_staf->row_array();
+
+        $email_ae = $this->session->userdata('email');
+        $email_staf = $value_staf['email'];
+
+        $nomor_telepon_ae = $this->session->userdata('nomor_telepon');
+        $nomor_telepon_staf = $value_staf['nomor_telepon'];
 
         $data_task = $this->db->query("SELECT * FROM data_task WHERE kode_task = '$kode_task'");
         $valid = $data_task->num_rows();
+
+        $nomor_telepon_ae = $this->session->userdata('nomor_telepon');
+        $nomor_telepon_staf = $value_staf['nomor_telepon'];
+
+        $name_ae = $value['ae_name'];
+        $keterangan = $value['project_desc'];
+        $nama_project = $value['project_name'];
 
         if ($valid > 0) {
             $status_project = "ACTIVE";
@@ -549,6 +581,13 @@ class Welcome extends CI_Controller {
 
                 $log_model->insert_log_task($data_log);
 
+                // beri notifikasi ae
+                $subject = "Project anda ".$nama_project." di pending";
+                $text = "Project anda ".$nama_project." di pending Oleh ".$name_ae;
+
+                $sendmail_model->send_mail_create_pending_project($email_ae, $subject, $text);
+                $sendmail_model->send_sms_ae($nomor_telepon_ae, $text);
+
                 redirect(base_url().'index.php');
             } else {
                 $status_staf = "Full";
@@ -572,6 +611,13 @@ class Welcome extends CI_Controller {
                         'tanggal_log' => $waktu_sekarang
                     );
 
+                // beri notifikasi staf
+                $subject = "Project ".$nama_project." diberikan kepada anda";
+                $text = "Mohon check woku untuk melihat detail job";
+
+                $sendmail_model->send_mail_create_project($email_staf, $subject, $text);
+                $sendmail_model->send_sms_staf($nomor_telepon_staf, $subject);
+
                 $log_model->insert_log_task($data_log);
 
                 redirect(base_url().'index.php');
@@ -588,12 +634,16 @@ class Welcome extends CI_Controller {
         $this->load->model('Project_model');
         $project_model = new Project_model();
 
+        $this->load->model('Task_model');
+        $task_model = new Task_model();
+
         // load log project
         $this->load->model('Log_model');
         $log_model = new Log_model();
 
         $log_model->update_log_project($kode_project);
         $project_model->update_project_finish($kode_project, "FINISH");
+        $task_model->finish_task($kode_project);
         redirect(base_url().'index.php' ,'refresh');
     }
 

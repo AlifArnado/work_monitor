@@ -28,7 +28,7 @@
             <div class="block push-bit">
                 <!-- Login Form -->
                 <?php echo validation_errors(); ?>
-                <form action="<?php echo base_url('login/login_proses'); ?>" method="post" id="form-login" class="form-horizontal form-bordered form-control-borderless">
+                <form action="<?php echo base_url('index.php/login/login_proses'); ?>" method="post" id="form-login" class="form-horizontal form-bordered form-control-borderless">
                     <div class="form-group">
                         <div class="col-xs-12">
                             <div class="input-group">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <div class="col-xs-12">
                             <span class="input-group-addon"> <i class="fa fa-unlock-alt"></i> Posisi Login ( AE / STAF )</span>
                             <select id="example-select" name="posisi" class="form-control" size="1">
@@ -54,7 +54,7 @@
                                 <option value="STAF">STAF</option>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="form-group form-actions">
                         <div class="col-xs-4">
@@ -77,7 +77,7 @@
                 <!-- END Login Form -->
 
                 <!-- Reminder Form -->
-                <form action="<?php echo base_url('login/forgot_password'); ?>#reminder" method="post" id="form-reminder" class="form-horizontal form-bordered form-control-borderless display-none">
+                <form action="<?php echo base_url('index.php/login/forgot_password'); ?>#reminder" method="post" id="form-reminder" class="form-horizontal form-bordered form-control-borderless display-none">
                     <div class="form-group">
                         <div class="col-xs-12">
                             <div class="input-group">
@@ -101,7 +101,7 @@
 
                 <!-- Register Form -->
 
-                <form action="<?php echo base_url('login/register_proses'); ?>#register" method="post" id="form-register" class="form-horizontal form-bordered form-control-borderless display-none">
+                <form action="<?php echo base_url('index.php/login/register_proses'); ?>#register" method="post" id="form-register" class="form-horizontal form-bordered form-control-borderless display-none">
                 <?php echo validation_errors(); ?>
                 <?php echo form_open('form'); ?>
                     <div class="form-group">

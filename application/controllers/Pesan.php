@@ -47,7 +47,7 @@ class Pesan extends CI_Controller {
             //print_r($data_pesan);
             // input pesan gunakan task pesan yang ada
             $pesan_model->simpan_pesan($data_pesan);
-            redirect(base_url('staf/dashboard/detail_task/'.$kode_task.'/'.$kode_project),'refresh');
+            redirect(base_url('index.php/staf/dashboard/detail_task/'.$kode_task.'/'.$kode_project),'refresh');
 
         } else {
             echo "data tidak ada";
@@ -67,7 +67,7 @@ class Pesan extends CI_Controller {
                 );
             $pesan_model->simpan_pesan($data_pesan);
             $data['data_pesan'] = $pesan_model->view_data_pesan($kode_pesan, $kode_task);
-            redirect(base_url('staf/dashboard/detail_task/'.$kode_task.'/'.$kode_project),'refresh');
+            redirect(base_url('index.php/staf/dashboard/detail_task/'.$kode_task.'/'.$kode_project),'refresh');
         }
     }
 
@@ -103,7 +103,7 @@ class Pesan extends CI_Controller {
             //print_r($data_pesan);
             // input pesan gunakan task pesan yang ada
             $pesan_model->simpan_pesan($data_pesan);
-            redirect(base_url('welcome/detail_task/'.$kode_task),'refresh');
+            redirect(base_url('index.php/welcome/detail_task/'.$kode_task),'refresh');
 
         } else {
             // echo "data tidak ada";
@@ -123,7 +123,7 @@ class Pesan extends CI_Controller {
                 );
             $pesan_model->simpan_pesan($data_pesan);
             $data['data_pesan'] = $pesan_model->view_data_pesan($kode_pesan, $kode_task);
-            redirect(base_url('welcome/detail_task/'.$kode_task),'refresh');
+            redirect(base_url('index.php/welcome/detail_task/'.$kode_task),'refresh');
         }
     }
 

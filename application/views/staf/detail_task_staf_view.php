@@ -16,8 +16,8 @@
                     <!-- Page content -->
                     <div id="page-content">
                         <ul class="breadcrumb breadcrumb-top">
-                            <li><a href="<?php echo base_url(''); ?>staf/dashboard/">Projects</a></li>
-                            <li><a href="" onclick="window.history.back();">Project Detail</a></li>
+                            <li><a href="<?php echo base_url(''); ?>index.php/staf/dashboard/">Projects</a></li>
+                            <li><a href="onclick="window.history.back();"">Project Detail</a></li>
                             <li><a href="">Request</a></li>
                         </ul>
 
@@ -30,9 +30,9 @@
                                     <!-- Article Content -->
                                     <?php
                                             if ($row_task->status_task == "Start") {
-                                                echo '<a class="btn btn-sm btn-info pull-right" id="get_work" href="'.base_url('staf/dashboard/get_work/'.$row_task->kode_task.'/'.$this->session->userdata('kode_staf').'/'.$kode_project.'/work').'" role="button"> <i class="gi gi-cogwheels"></i> Accept Task</a>';
+                                                echo '<a class="btn btn-sm btn-info pull-right" id="get_work" href="'.base_url('index.php/staf/dashboard/get_work/'.$row_task->kode_task.'/'.$this->session->userdata('kode_staf').'/'.$kode_project.'/work').'" role="button"> <i class="gi gi-cogwheels"></i> Accept Task</a>';
                                             } else if ($row_task->status_task == "Proses") {
-                                                echo '<a class="btn btn-sm btn-danger pull-right" id="waitting" href="'.base_url('staf/dashboard/get_work/'.$row_task->kode_task.'/'.$this->session->userdata('kode_staf').'/'.$kode_project.'/waitting').'" role="button"> <i class="hi hi-fire"></i> Finish Task</a>';
+                                                echo '<a class="btn btn-sm btn-danger pull-right" id="finish_project" href="'.base_url('index.php/staf/dashboard/get_work/'.$row_task->kode_task.'/'.$this->session->userdata('kode_staf').'/'.$kode_project.'/waitting').'" role="button"> <i class="hi hi-fire"></i> Finish Task</a>';
                                             } else {
 
                                             }
@@ -65,7 +65,7 @@
                                 <!-- Simple Widget with Post Input - Variation 3 -->
                                 <div class="widget">
                                     <div class="widget-extra-full">
-                                        <form action="<?php echo base_url('pesan/pesan_staf'); ?>" method="post" class="form-horizontal">
+                                        <form action="<?php echo base_url('index.php/pesan/pesan_staf'); ?>" method="post" class="form-horizontal">
                                         <?php foreach ($data_task as $row_task): $kode_task = $row_task->kode_task; ?>
                                             <div class="form-group">
                                                 <div class="col-xs-12">
@@ -130,17 +130,10 @@
                                     <!-- END Timeline Content -->
                                 </div>
                                 <!-- END Timeline Block -->
-
-
-
                                 </div>
                                 <!-- END Simple Widget with Post Input - Variation 3 -->
                             </div>
-
-
                         </div>
-
-
                     </div>
                     <!-- END Page Content -->
                 </div>
@@ -156,6 +149,33 @@
                 setTimeout("window.open(self.location, '_self');", 5000);
                 console.log("oke");
             }
+
+            $('#finish_project').on("click", function(e) {
+                console.log("click finish");
+                  e.preventDefault();
+                  var url = $(this).attr('href');
+                  swal({
+                      title: "FINISH PROJECT ",
+                      type: "warning",
+                      showCancelButton: true,
+                      confirmButtonColor: '#DD6B55',
+                      confirmButtonText: 'Yes, Finish Project!',
+                      cancelButtonText: "No, Tidak!",
+                      confirmButtonClass: "btn-danger",
+                      closeOnConfirm: false,
+                      closeOnCancel: false
+                    },
+                    function(isConfirm) {
+                      if (isConfirm) {
+                        swal("Good job!", "You clicked the button!", "success")
+                        window.location.replace(url);
+                      } else {
+                        swal("Cancelado", "", "error");
+                      }
+                    });
+                });
+
+
         </script>
     </body>
 </html>

@@ -5,6 +5,7 @@ class BerkasTask_model extends CI_Model {
 
     public function task_berkas_get_id($kode_project) {
         $this->db->where('kode_project', $kode_project);
+        $this->db->order_by('kode_task', 'desc');
         $query = $this->db->get('data_berkas_task');
         return $query->result();
     }

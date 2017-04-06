@@ -35,7 +35,7 @@
                                         $kode_project = $value['kode_project'];
                                  ?>
                             <div class="col-sm-6 col-lg-4">
-                                <a href="<?php echo base_url('welcome/detail_performance_staf/'.$row->id_staf); ?>" class="widget widget-hover-effect1">
+                                <a href="<?php echo base_url('index.php/welcome/detail_performance_staf/'.$row->id_staf); ?>" class="widget widget-hover-effect1">
                                     <?php if ($row->status_staf === "Full"): ?>
                                         <div class="widget-simple themed-background-dark namastaff" data-id="<?php echo $row->id_staf; ?>" data-status="<?php echo $row->status_staf; ?>">
                                     <?php else: ?>

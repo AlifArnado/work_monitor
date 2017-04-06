@@ -45,7 +45,7 @@
                                 <!-- Simple Widget with Post Input - Variation 3 -->
                                 <div class="widget">
                                     <div class="widget-extra-full">
-                                        <form action="<?php echo base_url('pesan/pesan_ae'); ?>" method="post" class="form-horizontal">
+                                        <form action="<?php echo base_url('index.php/pesan/pesan_ae'); ?>" method="post" class="form-horizontal">
                                         <?php foreach ($data_task as $row_task): $kode_task = $row_task->kode_task; ?>
                                             <div class="form-group">
                                                 <div class="col-xs-12">

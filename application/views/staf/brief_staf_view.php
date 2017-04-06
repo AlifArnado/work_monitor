@@ -19,8 +19,8 @@
                         <!-- Article Header -->
                         <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
                        <ul class="breadcrumb breadcrumb-top">
-                            <li><a href="<?php echo base_url(); ?>">Projects</a></li>
-                            <li><a href="<?php echo base_url('/welcome/task_list/'.$row_data_project->kode_project); ?>">Project Detail</a></li>
+                            <li><a href="<?php echo base_url('/index.php'); ?>">Projects</a></li>
+                            <li><a href="<?php echo base_url('/index.php/welcome/task_list/'.$row_data_project->kode_project); ?>">Project Detail</a></li>
                             <li><a href="">Brief</a></li>
                         </ul>
 
@@ -42,7 +42,7 @@
                                                 <h5> Tanggal : <?php echo $row_berkas_task->tgl_upload_task; ?> -> Berkas Kosong</h5>
                                             <?php else: ?>
                                                 <h5> Tanggal : <?php echo $row_berkas_task->tgl_upload_task; ?> ->
-                                                <a href="./assets/uploads/<?php echo $row_berkas_task->name_file; ?>" download="<?php echo $row_berkas_task->name_file; ?>" title=""><?php echo $row_berkas_task->name_file; ?></a>
+                                                <a href="<?php echo base_url('index.php/welcome/download/'.$row_berkas_task->name_file); ?>" target="_blank" downloads><?php echo $row_berkas_task->name_file; ?></a>
                                                 </h5>
                                             <?php endif ?>
                                         <?php endforeach ?>

@@ -26,7 +26,7 @@
                         </div>
                         <ul class="breadcrumb breadcrumb-top">
                             <li>Components</li>
-                            <li><a href="<?php echo base_url('welcome/calender'); ?>">Calendar</a></li>
+                            <li><a href="<?php echo base_url('index.php/welcome/calender'); ?>">Calendar</a></li>
                             <li><a href="">Add Event</a></li>
                         </ul>
                         <!-- END Calendar Header -->
@@ -43,7 +43,7 @@
                                     <!-- END Form Elements Title -->
 
                                     <!-- Basic Form Elements Content -->
-                                    <form action="<?php echo base_url('welcome/add_event'); ?>" method="POST" class="form-horizontal form-bordered">
+                                    <form action="<?php echo base_url('index.php/welcome/add_event'); ?>" method="POST" class="form-horizontal form-bordered">
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="example-text-input">Event Title</label>
                                             <div class="col-md-8">

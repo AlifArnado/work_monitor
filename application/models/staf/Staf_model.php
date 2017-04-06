@@ -6,7 +6,7 @@ class Staf_model extends CI_Model {
     public function staf_my_project($kode_staf) {
         // $this->db->where('status_task', 'Start');
         // $this->db->where('status_task', 'Proses');
-        $query = $this->db->query("SELECT * FROM data_task WHERE (status_task = 'Start' OR status_task = 'Proses' OR status_task = 'Pending' OR status_task = 'Waiting Request') AND kode_staf = '$kode_staf'");
+        $query = $this->db->query("SELECT * FROM data_task WHERE (status_task = 'Start' OR status_task = 'Proses' OR status_task = 'Pending' OR status_task = 'Waiting Request') AND kode_staf = '$kode_staf' ORDER BY kode_task DESC");
         return $query->result();
     }
 
@@ -49,7 +49,7 @@ class Staf_model extends CI_Model {
 
     public function get_data_staf() {
         $this->db->select('*');
-        $this->db->where('status_staf', 'Free');
+        //$this->db->where('status_staf', 'Free');
         $query = $this->db->get('data_staf');
         return $query->result();
     }

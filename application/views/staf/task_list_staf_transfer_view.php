@@ -21,7 +21,7 @@
                   </div>
                </div>
                <ul class="breadcrumb breadcrumb-top">
-                  <li><a href="<?php echo base_url('staf/dashboard'); ?>">Projects</a></li>
+                  <li><a href="<?php echo base_url('index.php/staf/dashboard'); ?>">Projects</a></li>
                   <li><a href="">Project Detail</a></li>
                </ul>
                <!-- END Tickets Header -->
@@ -45,7 +45,7 @@
                         <p><i class="fa fa-clock-o"></i>&nbsp;<strong>Deadline</strong> : <?php echo $row->deadline_project; ?></p>
                         <p><i class="fa fa-bolt"></i>&nbsp;<strong>Rational Finish Time</strong> : <?php echo $row->deadline_project; ?> </p>
                         <br/>
-                        <a href="<?php echo base_url('staf/dashboard/brief_staf/'.$row->kode_project); ?>"><button type="button" class="btn btn-primary">Open Brief</button></a>
+                        <a href="<?php echo base_url('index.php/staf/dashboard/brief_staf/'.$row->kode_project); ?>"><button type="button" class="btn btn-primary">Open Brief</button></a>
                         <!-- END Menu Content -->
                         <?php endforeach ?>
                      </div>
@@ -91,7 +91,7 @@
                                           <tr>
                                              <td class="text-center"># <?php echo $row_task_desc->kode_task; ?></td>
                                              <td>
-                                                <a href="<?php echo base_url('staf/dashboard/detail_task/'.$row_task_desc->kode_task); ?>"><strong><?php echo $row_task_desc->judul_task; ?></strong> </a><br>
+                                                <a href="<?php echo base_url('index.php/staf/dashboard/detail_task/'.$row_task_desc->kode_task); ?>"><strong><?php echo $row_task_desc->judul_task; ?></strong> </a><br>
                                                 <span class="text-muted"><strong><?php echo time_elapsed_string($row_task_desc->waktu);?></strong></span>
                                              </td>
                                              <td>
@@ -141,7 +141,7 @@
                                           <tr>
                                              <td class="text-center"># <?php echo $row_data_task->kode_staf; ?></td>
                                              <td>
-                                                <a href="<?php echo base_url('staf/dashboard/detail_task/'.$row_data_task->kode_task.'/'.$row_data_task->kode_project); ?>"><strong> <?php echo $row_data_task->judul_task; ?> </strong></a><br>
+                                                <a href="<?php echo base_url('index.php/staf/dashboard/detail_task/'.$row_data_task->kode_task.'/'.$row_data_task->kode_project); ?>"><strong> <?php echo $row_data_task->judul_task; ?> </strong></a><br>
                                                 <span class="text-muted"><strong> <?php echo time_elapsed_string($row_data_task->waktu);?> </strong></span>
                                              </td>
                                              <td><span class="label label-info">TRANSFER</span></td>
@@ -182,7 +182,7 @@
                                           <tr>
                                              <td class="text-center"># <?php echo $row_data_task->kode_staf; ?></td>
                                              <td>
-                                                <a href="<?php echo base_url('staf/dashboard/detail_task/'.$row_task_desc->kode_task); ?>"><strong> <?php echo $row_data_task->judul_task; ?> </strong></a><br>
+                                                <a href="<?php echo base_url('index.php/staf/dashboard/detail_task/'.$row_task_desc->kode_task); ?>"><strong> <?php echo $row_data_task->judul_task; ?> </strong></a><br>
                                                 <span class="text-muted"><strong> <?php echo time_elapsed_string($row_data_task->waktu);?> </strong></span>
                                              </td>
                                              <td><span class="label label-default">CLOSED</span></td>

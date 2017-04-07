@@ -26,6 +26,10 @@
 <script src="<?php echo base_url('assets/js/pages/compCalendar.js'); ?>"></script>
 <script>$(function(){ CompCalendar.init(); });</script>
 
+<!-- Load and execute javascript code used only in this page -->
+<script src="<?php echo base_url('assets/js/pages/uiProgress.js'); ?>"></script>
+<script>$(function(){ UiProgress.init(); });</script>
+
 <script src="<?php echo base_url('assets/js/vendor/modernizr.min.js'); ?>"></script>
 
 <script type="text/javascript" src="<?php echo base_url('assets/node_modules/sweetalert/dist/sweetalert.min.js'); ?>"></script>

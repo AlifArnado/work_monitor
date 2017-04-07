@@ -651,9 +651,23 @@ class Welcome extends CI_Controller {
          // load model performance
        $this->load->model('staf/Performance_model');
        $performance_model = new Performance_model();
-
         $data['performance_staf'] = $performance_model->detail_performance_task($kode_staf);
-
         $this->load->view('performance_view', $data);
+    }
+
+    public function manual() {
+        $this->load->model('Register_model');
+        $register_model = new Register_model();
+        $data['data_register'] = $register_model->get_data_ae();
+        $this->load->view('manualproject/create_project_view', $data);
+    }
+
+    public function archive() {
+        // load status Active Project
+        $this->load->model('Project_model');
+        $project_model = new Project_model();
+        $data['data_project'] = $project_model->view_data_project();
+
+        $this->load->view('archive_view', $data);
     }
 }

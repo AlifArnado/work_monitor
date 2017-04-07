@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <ul class="breadcrumb breadcrumb-top">
-                            <li><a href="dashboard.php">Projects</a></li>
+                            <li><a href="<?php echo base_url(); ?>">Projects</a></li>
                             <li><a href="">Workloads</a></li>
                         </ul>
 

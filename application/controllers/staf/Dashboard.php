@@ -16,7 +16,6 @@ class Dashboard extends CI_Controller {
     {
         $this->load->model('staf/Staf_model');
         $staf_model = new Staf_model();
-
         $kode_staf = $this->session->userdata('kode_staf');
 
         $data['data_task'] = $staf_model->staf_my_project($kode_staf);

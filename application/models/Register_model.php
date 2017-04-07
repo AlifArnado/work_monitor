@@ -10,26 +10,18 @@ class Register_model extends CI_Model {
         } else {
             return false;
         }
-
-
-        // $this->db->select('email, nama');
-        // $this->db->from('data_register');
-        // $this->db->where('email', $email);
-        // $this->db->where('nama', $nama);
-        // $this->db->limit(1);
-        // $query = $this->db->get();
-        // print_r($query->num_rows());
-        // if($query->num_rows() == 1) {
-        //     return $query->result();
-        // } else {
-        //     return false;
-        // }
     }
 
     public function saveDataRegister($data) {
         $this->db->insert('data_register', $data);
         $id_project = $this->db->insert_id();
         return $id_project;
+    }
+
+    public function get_data_ae() {
+        $this->db->select('*');
+        $query = $this->db->get('data_register');
+        return $query->result();
     }
 
 }

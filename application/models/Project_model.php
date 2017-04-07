@@ -29,6 +29,14 @@ class Project_model extends CI_Model {
     public function project_status_active() {
         $this->db->select('*');
         $this->db->where('status_project', "ACTIVE");
+        $this->db->order_by('kode_project', 'desc');
+        $query = $this->db->get('data_project');
+        return $query->result();
+    }
+
+    public function view_data_project() {
+        $this->db->select('*');
+        $this->db->order_by('kode_project', 'asc');
         $query = $this->db->get('data_project');
         return $query->result();
     }

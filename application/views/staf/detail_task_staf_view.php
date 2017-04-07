@@ -30,7 +30,7 @@
                                     <!-- Article Content -->
                                     <?php
                                             if ($row_task->status_task == "Start") {
-                                                echo '<a class="btn btn-sm btn-info pull-right" id="get_work" href="'.base_url('index.php/staf/dashboard/get_work/'.$row_task->kode_task.'/'.$this->session->userdata('kode_staf').'/'.$kode_project.'/work').'" role="button"> <i class="gi gi-cogwheels"></i> Accept Task</a>';
+                                                echo '<a class="btn btn-sm btn-info pull-right" id="get_work" href="'.base_url('index.php/staf/dashboard/get_work/'.$row_task->kode_task.'/'.$this->session->userdata('kode_staf').'/'.$kode_project.'/work').'" role="button"> Accept Task</a>';
                                             } else if ($row_task->status_task == "Proses") {
                                                 echo '<a class="btn btn-sm btn-danger pull-right" id="finish_project" href="'.base_url('index.php/staf/dashboard/get_work/'.$row_task->kode_task.'/'.$this->session->userdata('kode_staf').'/'.$kode_project.'/waitting').'" role="button"> <i class="hi hi-fire"></i> Finish Task</a>';
                                             } else {

@@ -18,7 +18,7 @@ class Pesan extends CI_Controller {
         // load model
         $this->load->model('Pesan_model');
         $pesan_model = new Pesan_model();
-        echo "<pre>";
+        // echo "<pre>";
         //print_r($this->input->post());
 
         $now2 = date('Y-m-d H:i:s');
@@ -34,7 +34,7 @@ class Pesan extends CI_Controller {
         $valid = $query->num_rows();
 
         if ($valid > 0) {
-            echo "data ada";
+            //echo "data ada";
             $kode_pesan = $kode_pesan_in->kode_pesan;
             $data_pesan = array(
                     'kode_pesan' => $kode_pesan,
@@ -50,7 +50,7 @@ class Pesan extends CI_Controller {
             redirect(base_url('index.php/staf/dashboard/detail_task/'.$kode_task.'/'.$kode_project),'refresh');
 
         } else {
-            echo "data tidak ada";
+            //echo "data tidak ada";
 
             // buat kode pesan
             $bb = $this->db->query("SELECT * FROM data_pesan");
@@ -75,7 +75,7 @@ class Pesan extends CI_Controller {
         // load model
         $this->load->model('Pesan_model');
         $pesan_model = new Pesan_model();
-        echo "<pre>";
+        //echo "<pre>";
         //print_r($this->input->post());
 
         $now2 = date('Y-m-d H:i:s');
